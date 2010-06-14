@@ -1,0 +1,40 @@
+#!/usr/bin/env python
+
+import getopt
+import sys
+
+from lc import get_lc
+from printer import Printer
+
+if __name__ == "__main__":
+    profile = "default"
+    image = size = name = None
+
+    try:
+        opts, args = getopt.getopt(sys.argv[1:], "p:i:n:s:")
+    except getopt.GetoptError, err:
+        sys.stderr.write("%s\n" % str(err))
+        sys.exit(1)
+
+    for o, a in opts:
+        if o == "-p":
+            profile = a
+        if o == "-i":
+            image = a
+        if o == "-n":
+            name = a
+        if o == "-s":
+            size = a
+                    
+    conn = get_lc(profile)
+
+    if image is None or name is None or size is None:
+        usage(sys.argv[0])
+        sys.exit(1)
+
+    nodeimage = filter(lambda img: str(img.id) == image, conn.list_images())[0]
+    nodesize = filter(lambda sz: str(sz.id).lower() == size.lower(), conn.list_sizes())[0]
+
+    node = conn.create_node(name=name, image=nodeimage, size=nodesize)
+    print node
+
