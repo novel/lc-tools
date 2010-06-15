@@ -1,7 +1,27 @@
+import getopt
+import sys
+
 from libcloud.types import NodeState
 
-readable_status = {NodeState.RUNNING: "Running",
-        NodeState.REBOOTING: "Rebooting",
-        NodeState.TERMINATED: "Terminated",
-        NodeState.PENDING: "Pending",
-        NodeState.UNKNOWN: "Unknown"}
+from lc import get_lc
+from printer import Printer
+
+
+def lister_main(what):
+    list_method = "list_%s" % what
+    profile = "default"
+
+    try:
+        opts, args = getopt.getopt(sys.argv[1:], "p:")
+    except getopt.GetoptError, err:
+        sys.stderr.write("%s\n" % str(err))
+        sys.exit(1)
+
+    for o, a in opts:
+        if o == "-p":
+            profile = a
+
+    conn = get_lc(profile)
+
+    for node in getattr(conn, list_method)():
+        Printer.do(node)

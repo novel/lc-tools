@@ -1,25 +1,6 @@
 #!/usr/bin/env python
 
-import getopt
-import sys
-
-from lc import get_lc
-from printer import Printer
+from shortcuts import lister_main
 
 if __name__ == "__main__":
-    profile = "default"
-
-    try:
-        opts, args = getopt.getopt(sys.argv[1:], "p:")
-    except getopt.GetoptError, err:
-        sys.stderr.write("%s\n" % str(err))
-        sys.exit(1)
-
-    for o, a in opts:
-        if o == "-p":
-            profile = a
-
-    conn = get_lc(profile)
-
-    for image in conn.list_images():
-        Printer.do(image)        
+    lister_main('images')

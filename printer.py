@@ -1,6 +1,12 @@
 import sys
 
-from shortcuts import readable_status
+from libcloud.types import NodeState
+
+readable_status = {NodeState.RUNNING: "Running",
+        NodeState.REBOOTING: "Rebooting",
+        NodeState.TERMINATED: "Terminated",
+        NodeState.PENDING: "Pending",
+        NodeState.UNKNOWN: "Unknown"}
 
 class Printer(object):
     _formats = {"nodeimage": "image %(name)s (id = %(id)s)",
