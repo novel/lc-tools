@@ -6,12 +6,15 @@ import sys
 from lc import get_lc
 from printer import Printer
 
+def usage(progname):
+    sys.stdout.write("%s -i <node_id> [reboot|destroy]\n\n" % progname)
+
 if __name__ == "__main__":
     profile = "default"
-    image = size = name = None
+    node_id = None
 
     try:
-        opts, args = getopt.getopt(sys.argv[1:], "p:i:n:s:")
+        opts, args = getopt.getopt(sys.argv[1:], "p:i:")
     except getopt.GetoptError, err:
         sys.stderr.write("%s\n" % str(err))
         sys.exit(1)
@@ -20,21 +23,24 @@ if __name__ == "__main__":
         if o == "-p":
             profile = a
         if o == "-i":
-            image = a
-        if o == "-n":
-            name = a
-        if o == "-s":
-            size = a
-                    
-    conn = get_lc(profile)
+            node_id = a
+    
+    if 0 == len(args):
+        usage(sys.argv[0])
+        sys.exit(1)
+    
+    action = args[0]
 
-    if image is None or name is None or size is None:
+    if node_id is None:
         usage(sys.argv[0])
         sys.exit(1)
 
-    nodeimage = filter(lambda img: str(img.id) == image, conn.list_images())[0]
-    nodesize = filter(lambda sz: str(sz.id).lower() == size.lower(), conn.list_sizes())[0]
+    conn = get_lc(profile)
 
-    node = conn.create_node(name=name, image=nodeimage, size=nodesize)
-    print node
+    try:
+        node = filter(lambda node: str(node.id) == node_id, conn.list_nodes())[0]
+    except IndexError:
+        sys.stderr.write("No node with id %s found." % node_id)
+        sys.exit(1)
 
+    getattr(node, action)()
