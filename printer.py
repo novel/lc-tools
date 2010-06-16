@@ -22,12 +22,12 @@ class Printer(object):
         print_method = "_print_%s" % print_class
 
         if hasattr(self, print_method):
-            return getattr(self, print_method)(thing)
+            return getattr(self, print_method)(thing, format)
 
-        fmt = None        
+        fmt = None
 
         if format is not None:
-            fmt = format 
+            fmt = format
         else:
             fmt = self._formats.get(thing.__class__.__name__.lower())
 
@@ -37,11 +37,15 @@ class Printer(object):
             sys.stdout.write(str(thing))
 
     @classmethod
-    def _print_gogridnode(self, thing):
+    def _print_gogridnode(self, thing, format=None):
         values = thing.__dict__.copy()
         # gogrid only has one public ip per server
         values['ip'] = values['public_ip'][0]
         values['rstatus'] = readable_status[int(values['state'])]
+        values['password'] = values['extra'].get('password', 'n/a')
 
-        fmt = "%(id)s\t%(name)s\t%(ip)s\t%(rstatus)s\n"
+        if format is not None:
+            fmt = format + '\n'
+        else:
+            fmt = "%(id)s\t%(name)s\t%(ip)s\t%(rstatus)s\n"
         sys.stdout.write(fmt % values)
