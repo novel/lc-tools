@@ -8,12 +8,12 @@ providers as libcloud does.
 
 We will use GoGrid as example.
 
-First, create config file: ~/.ggrc with the following content:
+First, create config file: `~/.lcrc` with the following content:
 
 <pre><code>[default]
 driver = gogrid
-access_id = <key_id>
-secret_key = <password>
+access_id = your_key_id
+secret_key = your_password
 </code></pre>
 
 It is self-explanatory.
