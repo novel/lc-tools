@@ -55,7 +55,7 @@ Now, to get a list of nodes, use:
 </code></pre>
 
 When you're done with the node, you can remove it:
-<pre><code>./lc-node-list -i node_id destroy</code></pre>
+<pre><code>./lc-node-do -i node_id destroy</code></pre>
 
 where `node_id` is an id of the node you want to destroy. If
 you want to reboot node, just pass 'reboot' argument to this
