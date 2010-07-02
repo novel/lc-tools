@@ -3,8 +3,8 @@
 import getopt
 import sys
 
-from lc import get_lc
-from printer import Printer
+from lctools.lc import get_lc
+from lctools.printer import Printer
 
 def usage(prog):
     sys.stdout.write("%s -i <image_id> -s <size_id> -n <name>\n\n" % prog)
@@ -28,7 +28,7 @@ if __name__ == "__main__":
             name = a
         if o == "-s":
             size = a
-                    
+
     conn = get_lc(profile)
 
     if image is None or name is None or size is None:
@@ -40,4 +40,3 @@ if __name__ == "__main__":
 
     node = conn.create_node(name=name, image=nodeimage, size=nodesize)
     print node
-

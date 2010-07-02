@@ -3,8 +3,8 @@
 import getopt
 import sys
 
-from lc import get_lc
-from printer import Printer
+from lctools.lc import get_lc
+from lctools.printer import Printer
 
 def usage(progname):
     sys.stdout.write("%s -i <node_id> [reboot|destroy]\n\n" % progname)
