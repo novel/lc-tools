@@ -3,6 +3,7 @@ from libcloud.providers import get_driver
 
 from config import get_config
 
+
 def get_lc(profile):
     conf = get_config(profile)
 

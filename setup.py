@@ -15,5 +15,4 @@ setup(name="lctools",
             "lc-node-add",
             "lc-node-do",
             "lc-node-list",
-            "lc-sizes-list"]
-)
+            "lc-sizes-list"])

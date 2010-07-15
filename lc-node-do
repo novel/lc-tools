@@ -6,6 +6,7 @@ import sys
 from lctools.lc import get_lc
 from lctools.printer import Printer
 
+
 def usage(progname):
     sys.stdout.write("%s -i <node_id> [reboot|destroy]\n\n" % progname)
 
@@ -24,11 +25,11 @@ if __name__ == "__main__":
             profile = a
         if o == "-i":
             node_id = a
-    
+
     if 0 == len(args):
         usage(sys.argv[0])
         sys.exit(1)
-    
+
     action = args[0]
 
     if node_id is None:
@@ -38,7 +39,8 @@ if __name__ == "__main__":
     conn = get_lc(profile)
 
     try:
-        node = filter(lambda node: str(node.id) == node_id, conn.list_nodes())[0]
+        node = filter(lambda node: str(node.id) == node_id,
+                conn.list_nodes())[0]
     except IndexError:
         sys.stderr.write("No node with id %s found." % node_id)
         sys.exit(1)

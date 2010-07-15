@@ -8,6 +8,7 @@ readable_status = {NodeState.RUNNING: "Running",
         NodeState.PENDING: "Pending",
         NodeState.UNKNOWN: "Unknown"}
 
+
 class Printer(object):
     _formats = {"nodeimage": "image %(name)s (id = %(id)s)",
             "nodesize": "size %(name)s (id=%(id)s, ram=%(ram)s, disk=%(disk)s bandwidth=%(bandwidth)s)"}

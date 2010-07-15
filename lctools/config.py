@@ -3,6 +3,7 @@ import ConfigParser
 
 LC_CONFIG = "~/.lcrc"
 
+
 class MyConfig(ConfigParser.ConfigParser):
     profile = None
 
@@ -12,6 +13,7 @@ class MyConfig(ConfigParser.ConfigParser):
 
     def get(self, option):
         return ConfigParser.ConfigParser.get(self, self.profile, option)
+
 
 def get_config(profile):
     conf = MyConfig(profile)
