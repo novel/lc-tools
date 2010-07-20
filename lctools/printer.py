@@ -50,3 +50,15 @@ class Printer(object):
         else:
             fmt = "%(id)s\t%(name)s\t%(ip)s\t%(rstatus)s\n"
         sys.stdout.write(fmt % values)
+
+    @classmethod
+    def _print_node(self, thing, format=None):
+        values = thing.__dict__.copy()
+        values['ip'] = "; ".join(values['public_ip'])
+        values['rstatus'] = readable_status[int(values['state'])]
+
+        if format is not None:
+            fmt = format + '\n'
+        else:
+            fmt = "%(id)s\t%(name)s\t%(ip)s\t%(rstatus)s\n"
+        sys.stdout.write(fmt % values)
