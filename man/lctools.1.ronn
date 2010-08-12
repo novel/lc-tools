@@ -3,7 +3,7 @@ lctools(1) -- tools for controlling clouds
 
 ## DESCRIPTION
 
-**lctools** are a set of tools for controlling 
+**lctools** is a set of tools for controlling
 clouds -- list, create and drop nodes, list
 images (also known as templates for some providers),
 possible node sizes etc.

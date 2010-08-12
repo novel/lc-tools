@@ -11,10 +11,40 @@ Therefore, you might use accounts for multiple
 cloud providers or different accounts within single
 cloud provider and switch them on fly.
 
+All the tools use account labeled `default` if no
+account specified.
+
 ## PROPERTIES
 
 All properties are necessary and cannot be omitted.
 
-driver
-access_id
-secret_key
+ * `driver`
+   Name of the cloud provider driver. List of
+   supported cloud providers might be obtained
+   using lc-drivers-list(1).
+
+ * `access_id`
+   Typically a login or equalent thing for the
+   cloud provider accont.
+   
+ * `secret_key`
+   A password for cloud provider account.
+
+## EXAMPLES
+
+A config file with two accounts: gogrid (default) 
+and rackspace.
+
+	[default]
+	driver = gogrid
+	access_id = s0m34cc351d
+	secret_key = secret1
+
+	[rack]
+	driver = rackspace
+	access_id = foobar
+	secret_key = bebebe
+
+## SEE ALSO
+
+lctools(1), lc-drivers-list(1)

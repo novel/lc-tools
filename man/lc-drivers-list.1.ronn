@@ -1,0 +1,30 @@
+lc-drivers-list(1) -- list drivers supported by lc-tools
+========================================================
+
+## SYNOPSIS
+
+`lc-drivers-list`
+
+## DESCRIPTION
+
+**lc-drivers-list** prints a list of cloud providers drivers
+supported by libcloud and, therefore, by lctools(1).
+
+This listing could be useful to figure out what driver name 
+to place into lcrc(5).
+
+Typical output will look like:
+
+	RimuHostingNodeDriver libcloud.drivers.rimuhosting
+	EC2USWestNodeDriver libcloud.drivers.ec2
+	VoxelNodeDriver libcloud.drivers.voxel
+
+The first column is Python's class name for the driver and
+the second one is Python's package name. The last token
+of the package name should be used for lcrc(5). For
+example, if you want use Voxel you need to pick name
+`voxel` (the last token of `libcloud.drivers.voxel`).
+
+## SEE ALSO
+
+lcrc(5), lctools(1)
