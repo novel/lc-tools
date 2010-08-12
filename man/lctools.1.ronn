@@ -8,7 +8,7 @@ clouds -- list, create and drop nodes, list
 images (also known as templates for some providers),
 possible node sizes etc.
 
-**lctools** use **libcloud** for all cloud operations
+**lctools** uses **libcloud** for all cloud operations
 so actually should support all the providers 
 that **libcloud** itself supports.
 
