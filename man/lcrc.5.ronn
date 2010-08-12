@@ -1,0 +1,20 @@
+lcrc(5) -- configuration file for lctools
+=========================================
+
+## DESCRIPTION
+
+A lctools configuration file consists of section
+and key-value pairs in each section.
+
+Each section corresponds to a single cloud provider.
+Therefore, you might use accounts for multiple
+cloud providers or different accounts within single
+cloud provider and switch them on fly.
+
+## PROPERTIES
+
+All properties are necessary and cannot be omitted.
+
+driver
+access_id
+secret_key

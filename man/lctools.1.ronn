@@ -1,0 +1,26 @@
+lctools(1) -- tools for controlling clouds
+==========================================
+
+## DESCRIPTION
+
+**lctools** are a set of tools for controlling 
+clouds -- list, create and drop nodes, list
+images (also known as templates for some providers),
+possible node sizes etc.
+
+**lctools** use **libcloud** for all cloud operations
+so actually should support all the providers 
+that **libcloud** itself supports.
+
+## FILES
+
+ * `~/.lcrc`:
+   Main configuration file, see lcrc(5) for details
+
+## COPYRIGHT
+
+Copyright (c) 2010 lctools developers
+
+## SEE ALSO
+
+lcrc(5)
