@@ -1,0 +1,62 @@
+lc-sizes-list(1) -- list node sized supported by cloud provider
+===============================================================
+
+## SYNOPSIS
+
+`lc-sizes-list` [`-p` <profile>] [`-f` <format>]
+
+## DESCRIPTION
+
+**lc-sizes-list** prints a list of available node
+sizes for current cloud provider account.
+
+## OPTIONS
+
+ * `-p` <profile>:
+ Specify profile to use, if not specified, `default` profile
+ will be used.
+
+ * `-f` <format>:
+ Defines format to use for output. See `FORMATTING` section for
+ details.
+
+## FORMATTING
+
+Default format for sizes listing is: 
+
+`size %(name)s (id=%(id)s, ram=%(ram)s, disk=%(disk)s bandwidth=%(bandwidth)s)`
+
+Legend:
+
+ * `name`:
+ Human-readable name of size.
+
+ * `id`:
+ Id of size. It will be used for specifying node size when creating new node etc.
+
+ * `ram`:
+ An amount of RAM for the given size.
+
+ * `disk`:
+ An amount of storage space provided by this size.
+
+ * `bandwith`:
+ Bandwidth for the given size.
+
+## EXAMPLES
+
+Default output:
+
+	$ lc-sizes-list
+	size 512MB (id=512MB, ram=512, disk=30 bandwidth=None)
+	size 4GB (id=4GB, ram=4096, disk=240 bandwidth=None)
+
+Using custom format:
+
+	$ lc-sizes-list -f '%(id)s'
+	512MB
+	4GB
+
+## SEE ALSO
+
+lcrc(5), lctools(1)
