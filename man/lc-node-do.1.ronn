@@ -1,0 +1,27 @@
+lc-node-do(1) -- perform an operation on a node
+===============================================================
+
+## SYNOPSIS
+
+`lc-sizes-list` [`-p` <profile>] `-i` <node_id> [reboot|destroy]
+
+## DESCRIPTION
+
+**lc-node-add** performs an operation on a node. Currently
+two operations are supported: `reboot` and `destroy`.
+
+All these operations are self-explanatory.
+
+## OPTIONS
+
+ * `-p` <profile>:
+ Specify profile to use, if not specified, `default` profile
+ will be used.
+
+ * `-i` <node_id>
+ Id of the node to perform operation on. Node id could be 
+ obtained using `lc-node-list(1)` tool.
+
+## SEE ALSO
+
+lcrc(5), lctools(1), lc-node-list(1)
