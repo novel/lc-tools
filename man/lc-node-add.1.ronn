@@ -1,0 +1,33 @@
+lc-node-add(1) -- create a new node
+===============================================================
+
+## SYNOPSIS
+
+`lc-sizes-list` `-i` <image_id> `-s` <size_id> `-n` <name> [`-p` <profile>]
+
+## DESCRIPTION
+
+**lc-node-add** creates a new node from a given image
+with a given size.
+
+## OPTIONS
+
+ * `-p` <profile>:
+ Specify profile to use, if not specified, `default` profile
+ will be used.
+
+ * `-i` <image_id>
+ Id of an image to use for a new node. Image ids could be
+ obtained using `lc-image-list(1)` tool.
+
+ * `-s` <size_id>
+ Specifies a size of a node. List of supported node sizes for
+ a given provider could be obtained using `lc-sizes-list(1)`
+ tool.
+
+ * `-n` <name>
+ Human-readable name of a node.
+
+## SEE ALSO
+
+lcrc(5), lctools(1), lc-image-list(1), lc-sizes-list(1)
