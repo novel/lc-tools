@@ -1,0 +1,70 @@
+lc-node-list(1) -- list running nodes
+===============================================================
+
+## SYNOPSIS
+
+`lc-sizes-list` [`-p` <profile>] [`-f` <format>]
+
+## DESCRIPTION
+
+**lc-node-list** prints a list of running nodes, their
+state, IP addresses and other useful information.
+
+## OPTIONS
+
+ * `-p` <profile>:
+ Specify profile to use, if not specified, `default` profile
+ will be used.
+
+ * `-f` <format>:
+ Defines format to use for output. See `FORMATTING` section for
+ details.
+
+## FORMATTING
+
+Formatting is specific to cloud provider driver because different
+providers could have different node properties.
+
+Default format for images listing is:
+
+`image %(name)s (id = %(id)s)`
+
+Legend:
+
+ * `name`:
+ Human-readable name of a node.
+
+ * `id`:
+ Id of a node.
+
+ * `ip`:
+ IP address of a node. Could contain more than one address.
+
+ * `rstatus`:
+ State of the node (i.e. `Running` or `Pending`)
+
+ * `password` (optional):
+ Root password for a node. This field is optional, i.e. it's not
+ supported for all cloud providers.
+
+## EXAMPLES
+
+Default output:
+
+	$ lc-image-list | head -2
+	image Windows 2003 (32-bit) w/ MSSQL 2005 Workgroup (id = 6)
+	image Windows 2003 (32-bit) w/ MSSQL 2005 Standard (id = 7)
+
+Using custom format:
+
+	$ lc-image-list -f 'image_id = %(id)s' | head -2
+	image_id = 6
+	image_id = 7
+
+## BUGS
+
+Formatting might not be correct for all cloud providers.
+
+## SEE ALSO
+
+lcrc(5), lctools(1)
