@@ -1,0 +1,53 @@
+lc-images-list(1) -- list available images
+===============================================================
+
+## SYNOPSIS
+
+`lc-sizes-list` [`-p` <profile>] [`-f` <format>]
+
+## DESCRIPTION
+
+**lc-sizes-list** prints a list of available images (also known
+as templates by some cloud providers.
+
+## OPTIONS
+
+ * `-p` <profile>:
+ Specify profile to use, if not specified, `default` profile
+ will be used.
+
+ * `-f` <format>:
+ Defines format to use for output. See `FORMATTING` section for
+ details.
+
+## FORMATTING
+
+Default format for images listing is:
+
+`image %(name)s (id = %(id)s)`
+
+Legend:
+
+ * `name`:
+ Human-readable name of an image.
+
+ * `id`:
+ Id of an image. It will be used for specifying an image when creating new node etc.
+
+## EXAMPLES
+
+Default output:
+
+	$ lc-image-list | head -2
+	image Windows 2003 (32-bit) w/ MSSQL 2005 Workgroup (id = 6)
+	image Windows 2003 (32-bit) w/ MSSQL 2005 Standard (id = 7)
+
+Using custom format:
+
+	$ lc-image-list -f 'image_id = %(id)s' | head -2
+	image_id = 6
+	image_id = 7
+
+## SEE ALSO
+
+lcrc(5), lctools(1)
