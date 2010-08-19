@@ -1,13 +1,13 @@
-lc-images-list(1) -- list available images
+lc-image-list(1) -- list available images
 ===============================================================
 
 ## SYNOPSIS
 
-`lc-sizes-list` [`-p` <profile>] [`-f` <format>]
+`lc-size-list` [`-p` <profile>] [`-f` <format>]
 
 ## DESCRIPTION
 
-**lc-sizes-list** prints a list of available images (also known
+**lc-size-list** prints a list of available images (also known
 as templates by some cloud providers.
 
 ## OPTIONS
