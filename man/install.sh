@@ -3,6 +3,13 @@
 MAN_PREFIX="${PREFIX}/share/man"
 RONN=${RONN:-/var/lib/gems/1.8/bin/ronn}
 
+${RONN} --version > /dev/null 2>&1
+
+if test $? -ne 0; then
+	echo "Warning: ronn not found, man pages will not be installed!"
+	exit
+fi
+
 for man in *.ronn; do
 	section=`echo ${man}|sed 's/.*\([0-9]\).*/\1/'`
 	file=`echo ${man}|sed 's/\.ronn$//'`
