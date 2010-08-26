@@ -1,7 +1,36 @@
-try:
-    from setuptools import setup
-except ImportError:
-    from distutils.core import setup
+#!/usr/bin/env python
+
+import subprocess
+import os.path
+import sys
+
+from distutils.core import setup
+from distutils.command.install import install
+from distutils.command.clean import clean
+
+class lc_install(install):
+
+    def run(self):
+#        install.run(self)
+
+#        print "HERE WE GO"
+#        print self.dump_options()
+#        print self.prefix
+#        sys.exit(0)
+
+        man_dir = os.path.abspath("./man/")
+
+        output = subprocess.Popen([os.path.join(man_dir, "install.sh")],
+                stdout=subprocess.PIPE, cwd=man_dir, env=dict({"PREFIX": self.prefix}, **os.environ)).communicate()[0]
+        print output
+
+#class lc_clean(clean):
+#
+#    def run(self):
+#        clean.run(self)
+#
+#        print "STUFFF YZ CLEAN!!"
+
 
 setup(name="lctools",
         version="0.1.2",
@@ -24,4 +53,5 @@ setup(name="lctools",
             'License :: OSI Approved :: Apache Software License',
             'Operating System :: OS Independent',
             'Programming Language :: Python',
-            'Topic :: System'],)
+            'Topic :: System'],
+        cmdclass={"install": lc_install},)
