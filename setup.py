@@ -20,7 +20,7 @@ class lc_install(install):
         print output
 
 setup(name="lctools",
-        version="0.1.2",
+        version="0.1.3",
         description="CLI tools for managing clouds, based on libcloud",
         author="Roman Bogorodskiy",
         author_email="bogorodskiy@gmail.com",
