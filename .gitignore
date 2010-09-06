@@ -1,5 +1,8 @@
 dist
 build
+MANIFEST
 *egg-info
 *.pyc
 *.swp
+*.swo
+*.[0-9]
