@@ -1,12 +1,13 @@
 #!/usr/bin/env python
 
+import os
+import shutil
 import subprocess
-import os.path
 import sys
 
 from distutils.core import setup
 from distutils.command.install import install
-from distutils.command.clean import clean
+from distutils.command.sdist import sdist
 
 class lc_install(install):
 
@@ -16,8 +17,25 @@ class lc_install(install):
         man_dir = os.path.abspath("./man/")
 
         output = subprocess.Popen([os.path.join(man_dir, "install.sh")],
-                stdout=subprocess.PIPE, cwd=man_dir, env=dict({"PREFIX": self.prefix}, **os.environ)).communicate()[0]
+                stdout=subprocess.PIPE,
+                cwd=man_dir,
+                env=dict({"PREFIX": self.prefix}, **os.environ)).communicate()[0]
         print output
+
+class lc_sdist(sdist):
+    """We substitute default 'sdist' command for the sake of two things:
+
+    * README.md -> README (as github only shows *.md files as Markdown
+    """
+
+    def run(self):
+        sys.stdout.write("README.md --> README\n")
+        shutil.copyfile("README.md", "README")
+        
+        sdist.run(self)
+        
+        sys.stdout.write("Cleaning up README\n")
+        os.remove("README")
 
 setup(name="lctools",
         version="0.1.2",
@@ -41,4 +59,4 @@ setup(name="lctools",
             'Operating System :: OS Independent',
             'Programming Language :: Python',
             'Topic :: System'],
-        cmdclass={"install": lc_install},)
+        cmdclass={"install": lc_install, "sdist": lc_sdist},)
