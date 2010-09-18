@@ -2,9 +2,9 @@ import os
 
 from nose.tools import *
 
-import config
+from lctools import config
 
-class config_test(object):
+class TestConfig(object):
     test_filename = "bebebe"
 
     def setup(self):
