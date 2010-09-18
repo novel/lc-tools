@@ -9,3 +9,5 @@
 
   now you just do: lc-node-do -i 1001,1002,1003 destroy
   or even: lc-node-do -i 1001-1003 destroy
+
+- Refuse to work if config file permissons are loose

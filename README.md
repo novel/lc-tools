@@ -19,7 +19,8 @@ First, create config file: `~/.lcrc` with the following content:
 	access_id = your_key_id
 	secret_key = your_password
 
-It is self-explanatory.
+It is self-explanatory. Don't forget to run `chmod 600` on it to
+keep your credentials secret.
 
 When you're done with the configuration file, you can start managing your
 servers. To list the available image, fire up lc-image-list command

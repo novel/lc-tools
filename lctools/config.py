@@ -1,3 +1,4 @@
+import stat
 import os.path
 import ConfigParser
 
@@ -16,7 +17,14 @@ class MyConfig(ConfigParser.ConfigParser):
 
 
 def get_config(profile):
+    config_path = os.path.expanduser(LC_CONFIG)
+
+    if os.stat(config_path)[stat.ST_MODE] & \
+            (stat.S_IRWXG | stat.S_IRWXO) != 0:
+        raise RuntimeError("%s: permissions are too loose, set to 600" % \
+                LC_CONFIG)
+
     conf = MyConfig(profile)
-    conf.read(os.path.expanduser(LC_CONFIG))
+    conf.read(os.path.expanduser(config_path))
 
     return conf
