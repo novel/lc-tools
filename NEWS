@@ -1,0 +1,11 @@
+0.1.4
+
+- Added ranges support for lc-node-do's -i arg, i.e.
+  if previosuly to remove nodes with ids like
+  1001, 1002, 1003 you had to issue command like:
+
+     for node in 1001 1002 1003; do \
+          lc-node-do -i ${node} destroy; done
+
+  now you just do: lc-node-do -i 1001,1002,1003 destroy
+  or even: lc-node-do -i 1001-1003 destroy
