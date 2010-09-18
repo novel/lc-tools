@@ -40,7 +40,7 @@ Now, to get a list of available node sizes, do:
 	size 8GB (id=8GB, ram=8192, disk=480 bandwidth=None)
 	size 1GB (id=1GB, ram=1024, disk=60 bandwidth=None)
 
-So now you know ids of the images and available sizes, 
+So now you know ids of the images and available sizes,
 you can use them to create a new node like that:
 
 	lc-node-add -i 62 -s 1GB -n mynewnode

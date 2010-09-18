@@ -31,14 +31,14 @@ class lc_sdist(sdist):
     def run(self):
         sys.stdout.write("README.md --> README\n")
         shutil.copyfile("README.md", "README")
-        
+
         sdist.run(self)
-        
+
         sys.stdout.write("Cleaning up README\n")
         os.remove("README")
 
 setup(name="lctools",
-        version="0.1.3",
+        version="0.1.4",
         description="CLI tools for managing clouds, based on libcloud",
         author="Roman Bogorodskiy",
         author_email="bogorodskiy@gmail.com",
