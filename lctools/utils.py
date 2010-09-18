@@ -1,5 +1,7 @@
 """Project-wise useful utils"""
 
+import string
+
 def int_sequence(sequence):
     """Function to transform integer suquences like '3-7,45,34-36' 
     and so forth to a list of integers, so for the sample sequence
@@ -32,3 +34,16 @@ def int_sequence(sequence):
     tokens = sequence.split(",")
 
     return sum(map(_parse_token, tokens), [])
+
+def is_int_sequence(string_object):
+    """Determine if the given string is an integer
+    sequence as understood by L{I{int_sequence}
+    function <int_sequence>}.
+
+    @param string_object: string to check
+    @type string_object: string
+    @return: True if string_object is an int sequence,
+        False otherwise
+    @rtype: boolean"""
+
+    return not len(set(string.ascii_letters) & set(string_object))

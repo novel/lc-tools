@@ -2,9 +2,9 @@
 
 from nose.tools import *
 
-from lctools.utils import int_sequence
+from lctools.utils import int_sequence, is_int_sequence
 
-class TestUtils(object):
+class TestIntSequence(object):
     """Test Class for lctools.utils.int_sequence
     function."""
 
@@ -43,3 +43,18 @@ class TestUtils(object):
     @raises(ValueError)
     def test_that_int_sequence_fails_on_illegal_values(self):
         ints = int_sequence("4-2")
+
+class TestIsIntSequence(object):
+    """Test Class for lctools.utils.is_int_sequence function."""
+
+    def test_that_is_int_sequence_returns_true_for_int_sequence(self):
+        assert_true(is_int_sequence("1-3,7,10"))
+
+    def test_that_is_int_sequence_returns_true_for_digit(self):
+        assert_true(is_int_sequence("143"))
+
+    def test_that_is_int_sequence_returns_false_for_some_alfanum_str(self):
+        assert_false(is_int_sequence("h345aha"))
+
+    def test_that_is_int_sequence_returns_false_for_alnum_str(self):
+        assert_false(is_int_sequence("hehe"))
