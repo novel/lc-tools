@@ -14,6 +14,9 @@ cloud provider and switch them on fly.
 All the tools use account labeled `default` if no
 account specified.
 
+Also, config file should be accessible only by
+owner, i.e. permissions should be set to `600`.
+
 ## PROPERTIES
 
 All properties are necessary and cannot be omitted.
