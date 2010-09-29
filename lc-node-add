@@ -8,7 +8,28 @@ from lctools.printer import Printer
 
 
 def usage(prog):
-    sys.stdout.write("%s -i <image_id> -s <size_id> -n <name>\n\n" % prog)
+    sys.stdout.write("%s -i <image_id> -s <size_id> -n <name> ex_a1=ex_v1 ... ex_aN=ex_vN\n\n" % prog)
+
+def process_extra_args(args):
+    def value_to_native(value):
+        if isinstance(value, str) and value in ('true', 'false'):
+            return value == 'true'
+        else:
+            return value
+
+    extra_args = {}
+
+    for token in args:
+        k, v = token.split("=")
+
+        if k.startswith("ex_"):
+            key = k
+        else:
+            key = "ex_%s" % k
+
+        extra_args[key] = value_to_native(v)
+
+    return extra_args
 
 if __name__ == "__main__":
     profile = "default"
@@ -40,5 +61,10 @@ if __name__ == "__main__":
     nodesize = filter(lambda sz: str(sz.id).lower() == size.lower(),
             conn.list_sizes())[0]
 
-    node = conn.create_node(name=name, image=nodeimage, size=nodesize)
+    create_node_kwargs = {"name": name, "image": nodeimage,
+            "size": nodesize}
+
+    create_node_kwargs.update(process_extra_args(args))
+
+    node = conn.create_node(**create_node_kwargs)
     print node
