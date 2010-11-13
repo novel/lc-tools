@@ -26,8 +26,11 @@ def lister_main(what):
 
     conn = get_lc(profile)
 
-    for node in getattr(conn, list_method)():
-        Printer.do(node, format)
+    try:
+        for node in getattr(conn, list_method)():
+            Printer.do(node, format)
+    except Exception, err:
+        sys.stderr.write("Error: %s\n" % str(err))
 
 def get_node_or_fail(conn, node_id, coroutine=None, cargs=(), ckwargs={}):
     """Shortcut to get a single node by its id. In case when 
