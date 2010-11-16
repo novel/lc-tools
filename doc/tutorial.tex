@@ -1,0 +1,243 @@
+\documentclass[a4paper]{report}
+\usepackage{verbatim}
+\usepackage{hyperref}
+\title{An lc-tools Tutirial}
+\author{Roman Bogorodskiy\\
+\texttt{novel@FreeBSD.org}}
+\date{\today}
+\begin{document}
+   \maketitle
+   \tableofcontents
+   \section{Introduction}
+   An {\tt lc-tools} is a set of command line tools to manage various Cloud (aka IaaS)
+   Providers. It's written in \href{http://www.python.org}{Python} and 
+   uses \href{http://libcloud.org}{libcloud} to interact with provider's API.xx
+   
+   \section{Getting Started}
+      \subsection{Installing}
+          \subsubsection{Dependencies}
+          The only external dependency is {\tt libcloud}. Please visit 
+          \href{http://incubator.apache.org/libcloud/downloads.html}{libcloud download page}
+          to get information how to download and install it.
+
+          \subsubsection{Installing from PyPI}
+          Latest stable version of {\tt lc-tools} could be installed from PyPI:
+
+          \begin{verbatim}
+           easy_install lctools
+          \end{verbatim}
+
+          \subsubsection{Installing from source}
+          To get latest development version you can checkout sources from 
+          \href{https://github.com/novel/lc-tools}{project's github page}:
+
+          \begin{verbatim}
+           git clone https://github.com/novel/lc-tools.git
+          \end{verbatim}
+
+          \textbf{Note!}: latest development version requires latest {\tt libcloud}
+          sources!
+      \subsection{Configuring} \label{conf}
+      All configuration data is stored in text file {\tt ~/.lcrc}. It doesn't exist
+      by default so you have to create it:
+
+      \begin{verbatim}
+      touch ~/.lcrc
+      chmod 600 ~/.lcrc
+      \end{verbatim}
+
+      We need {\tt chmod} to be sure others can't access you secret keys. If file mode
+      will be too permissive, {\tt lc-tools} will not run.
+
+      Structure of the file is following:
+
+      \begin{verbatim}
+      [default]
+      driver = foogrid
+      access_id = your_key_id
+      secret_key = your_password
+
+      [barcloud]
+      driver = barcloud
+      access_id = somekey
+      secret_key = some_key
+      \end{verbatim}
+
+      You probably noted that config file is separated by sections (\textbf{default},
+      \textbf{barcloud} in the example above). Each section corresponds to a signle
+      cloud account, it's possible to switch them and \textbf{default} section is
+      used by default and should always be present.
+
+      All fields are necessary and cannot be omitted.
+
+      \begin{description}
+        \item[driver] \hfill \\
+          name of the specific cloud provider for the account. To get a listof all
+          available drivers please execute
+
+          \begin{verbatim}
+            lc-drivers-list|cut -d "." -f3|sort|uniq
+          \end{verbatim}
+
+        \item[access\_id] \hfill \\
+          access\_id for the account. It could be either login or some generated key
+        \item[secret\_key] \hfill \\
+          secretkey for the accout, in other words it's a password for given access\_id
+      \end{description}
+
+      Please refer to your cloud prover for detailed documentation on getting account's
+      credentials.
+
+      \section{Basic Usage}
+         \subsection{Glossary}
+            Various cloud providers use different terms like images, flavours, nodes,
+            servers etc. We will just use terms used in libcloud internally. 
+
+            \begin{description}
+               \item[Node] \hfill \\
+               Single instance of \textit{virtual server} on the cloud. 
+               \item[Image] \hfill \\
+               Understand it as a \textit{server template}, the base from your nodes
+               will deliver from.
+               \item[Size] \hfill \\
+               Size of the \textit{node}, i.e. hardware features of \textit{node}. 
+               It could imply RAM, disk space and so on.
+            \end{description}
+         \subsection{General Info}
+         Lc-tools package consists of several tools each of them does its own thing:
+         listing images, creating nodes, etc. An easy way to learn what tools exist
+         type \texttt{lc-} in your shell's prompt and press Tab key to autocomplete.
+
+         Every tools allows to switch configuration profile (please refer 
+         to \nameref{conf} if you don't know what it is). This is done using 
+         \texttt{-p} switch like this:
+
+            \begin{verbatim}
+            lc-node-list -p myacc2
+            \end{verbatim}
+
+         Where \texttt{myacc2} is a name of profile you want to use. Again, this
+         feature works for every tool, not only \texttt{lc-node-list}.
+
+         \subsection{Listing Images}
+            You can list available images using \texttt{lc-image-list} tool. Here
+            is a sample of its output:
+
+            \begin{verbatim}
+         $ lc-image-list|grep -i centos
+         image CentOS 5.2 (32-bit) w/ RightScale (id = 62)
+         image CentOS 5.2 (64-bit) w/ RightScale (id = 63)
+         image CentOS 5.3 (32-bit) w/ None (id = 1531)
+         image CentOS 5.3 (64-bit) w/ None (id = 1532)
+         $
+            \end{verbatim}
+
+            The first line is a shell command we've issued. I've piped it to
+         \texttt{grep} to output only images containing 'centos' it their names,
+         otherwise the list would be too long. 
+
+         For every image you see its name and id, for example for 
+        \textit{CentOS 5.3 (64-bit) w/ None} id will be \texttt{1532}. Please
+        remember it because you will need it if you're going to use this
+        image.
+
+        \subsection{Listing Sizes}
+        Sizes can be viewed using \texttt{lc-sizes-list} tool. An example of its
+        output for GoGrid:
+
+        \begin{verbatim}
+        $ lc-sizes-list
+     size 512MB (id=512MB, ram=512, disk=30 bandwidth=None)
+     size 4GB (id=4GB, ram=4096, disk=240 bandwidth=None)
+     size 2GB (id=2GB, ram=2048, disk=120 bandwidth=None)
+     size 8GB (id=8GB, ram=8192, disk=480 bandwidth=None)
+     size 1GB (id=1GB, ram=1024, disk=60 bandwidth=None)
+       $
+       \end{verbatim}
+
+       Please note that ids are not always numeric as could be seen by this example.
+       So, if we want to create, say, 2GB server, we should use id \texttt{2GB}.
+
+       \subsection{Node Creation}
+       Now as we've learned how to observe available images and sized we can proceed
+       with node creation using \texttt{lc-node-add} tool.
+
+       It's as simple as:
+
+       \begin{verbatim}
+       $ lc-node-add -i 62 -s 1GB -n mynewnode
+       $
+       \end{verbatim}
+
+       Here we created a new node with image \texttt{id = 62}, size
+       \texttt{id = 1GB} and name \texttt{mynewnode}.
+
+       In the next section we will discuss how to list nodes to make
+       sure your new node created and obtain details about it.
+
+       \subsection{Listing Nodes}
+       Getting list of nodes is not harder than getting list of images
+       or sizes:
+
+       \begin{verbatim}
+       $ lc-node-list
+       100xxx  mynode1     173.204.xx.yy  Running
+       100xxx  mynode2    173.204.xx.zz  Running
+       $
+       \end{verbatim}
+
+       Format of this output is following:
+
+       \begin{center}
+         \begin{tabular}{ | c | c | c | c | }
+           \hline
+             image\_id & name & public\_ips & state \\
+           \hline
+         \end{tabular}
+       \end{center}
+
+       Where:
+
+       \begin{description}
+          \item[image\_id] \hfill \\
+          Id of the node automatically generated by cloud provider
+          \item[name] \hfill \\
+          Name of the node you gave at creation.
+          \item[public\_ip] \hfill \\
+          Comma-separated list of public ips assigned to the node.
+          \item[status] \hfill \\
+          Status of the node, helps to understand if node is usable or not.
+       \end{description}
+
+       \subsection{Operations on Individual Nodes}
+       Tool called \texttt{lc-node-do} allows to operate on individual nodes.
+       Currently, it allows rebooting and destroying (deleting) nodes.
+
+       It can be done this way:
+
+       \begin{verbatim}
+        $ lc-node-do -i 123 destroy # for deleting
+        $ lc-node-do -i 124 reboot  # for rebooting
+        \end{verbatim}
+
+       Here an arugment for \texttt{-i} switch is an id of the node we're working
+       with and the next arugment is an action, i.e. what we want to do with the node.
+
+       It's possible to specify more than one node id at time, for example:
+
+       \begin{verbatim}
+        $ lc-node-do -i 10,34,98 destroy
+        $
+        \end{verbatim}
+
+       This command will destory nodes with ids: 10, 34 and 98. Also, it's possible to
+       specify ranges of ids like that:
+
+       \begin{verbatim}
+        $ lc-node-do -i 100-119 destroy
+        $
+        \end{verbatim}
+
+      This will destroy nodes with ids starting from 100 and ending with 119.
+
+\end{document}
