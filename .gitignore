@@ -6,3 +6,8 @@ MANIFEST
 *.swp
 *.swo
 *.[0-9]
+*.log
+*.toc
+*.pdf
+*.out
+*.aux
