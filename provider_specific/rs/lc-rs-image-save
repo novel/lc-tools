@@ -4,4 +4,3 @@ from lctools.shortcuts import save_image_main
 
 if __name__ == "__main__":
     save_image_main()
-
