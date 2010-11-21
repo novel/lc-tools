@@ -27,16 +27,54 @@
            easy_install lctools
           \end{verbatim}
 
-          \subsubsection{Installing from source}
+          \subsubsection{Installing from source} \label{instsrc}
           To get latest development version you can checkout sources from 
           \href{https://github.com/novel/lc-tools}{project's github page}:
 
           \begin{verbatim}
            git clone https://github.com/novel/lc-tools.git
+           \end{verbatim}
+
+          Now you should have all the sources and should be ready to proceed to
+          installation. As {\tt lc-tools} use {\tt setuptools} installation
+          process is fairly simple:
+
+          \begin{verbatim}
+           $ cd lc-tools
+           $ sudo python setup.py install
+           \end{verbatim}
+
+         This will install all the tools and you will be able to use them
+         after configuration (you will know how to configure {\tt lc-tools}
+         in the next section: \nameref{conf}).
+
+         However, there are some additional tools available in {\tt lc-tools}
+         that's not installed by default -- it's various provider specific tools.
+         
+         What are provider specific tools, you might ask. You see, {\tt libcloud}
+         is designed to provide an unified API to the cloud, so its model is almost
+         an intersection of APIs of various cloud providers. However, various
+         provider can have its specific API calls, for example, profider Foo might
+         have a call to return information how many servers could be created in
+         your current account or, say, what's the maximum allowed rate of requests
+         to the API per minute. Usually such features are implemented in {\tt libcloud}
+         as extra calls and are not available in common API. So in order to be able
+         to use this features, provider specific tools has to be written.
+
+         Currently, {\tt lc-tools} supports such scripts for Rackspace and GoGrid.
+         In order to enable them both, please use the command:
+
+         \begin{verbatim}
+          $ sudo python setup.py install --providertools="gg rs"
           \end{verbatim}
 
-          \textbf{Note!}: latest development version requires latest {\tt libcloud}
-          sources!
+         This means that we're installing additional tools for GoGrid (gg) and
+         Rackspace (rs). Please refer to \nameref{provspec} to details on usage
+         of this tools.
+
+
+         \textbf{Note!}: latest development version requires latest {\tt libcloud}
+         sources!
       \subsection{Configuring} \label{conf}
       All configuration data is stored in text file {\tt ~/.lcrc}. It doesn't exist
       by default so you have to create it:
@@ -239,5 +277,62 @@
         \end{verbatim}
 
       This will destroy nodes with ids starting from 100 and ending with 119.
+
+\section{Provider Specific} \label{provspec}
+
+As it was discussed earlier, {\tt lc-tools} comes with support for additional
+non-standart features of some cloud providers. Some of these features are available
+out of the box, and others needs to be configured. Every section has an
+\textit{Availability} keyword at the very beginning. It could either be:
+\textit{Availability: default} which would mean that feature should be available 
+without extra configuration, or \textit{Availability: gg}, which would mean
+that you should configure {\tt lc-tools} to install GoGrid specific scripts passing
+
+\begin{verbatim}
+--providerspecific=gg
+\end{verbatim}
+
+to \texttt{setup.py install}. Please refer to \nameref{instsrc} for more details on that.
+
+\subsection{GoGrid}
+\subsubsection{Creating a sandbox server}
+
+\textit{Availability: default}
+
+In terms of GoGrid sandbox server is a server which will be used as a base for
+some server image. It can be created by passing extra argument {\tt ex\_issandbox}
+like that:
+
+\begin{verbatim}
+$ lc-node-add -s 1GB -i 123 -n mysandbox ex_issandbox=true
+\end{verbatim}
+
+
+The created server will be a sandbox server.
+
+
+Please refer to \href{http://wiki.gogrid.com/wiki/index.php/MyGSI}{GoGrid wiki} to get
+more details on sandboxes and server images.
+
+\subsubsection{Creating an Image from Sandbox}
+
+\textit{Availability: gg}
+
+Once you have prepared your sandbox server for image creation you can do it with 
+\texttt{lc-gg-image-save} tool:
+
+\begin{verbatim}
+$ lc-gg-image-save -i 123 -n mynewimage
+\end{verbatim}
+
+Where \tt{123} is an id of the sandbox server to be used as a base for new image and
+\tt{mynewimage} is a name you want to give to your new image.
+
+Note: at the time of writing preparing an image is not quite trivial and involves logging in
+to the box over ssh and running some scripts. Please refer to 
+\href{http://wiki.gogrid.com/wiki/index.php/MyGSI}{GoGrid wiki} for details.
+
+\subsection{Rackspace}
+TODO
 
 \end{document}
