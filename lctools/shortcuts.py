@@ -31,9 +31,9 @@ def lister_main(what):
         if o == "-p":
             profile = a
 
-    conn = get_lc(profile)
-
     try:
+        conn = get_lc(profile)
+
         for node in getattr(conn, list_method)():
             Printer.do(node, format)
     except Exception, err:
@@ -46,7 +46,7 @@ def save_image_main():
 
     def usage(progname):
         sys.stdout.write("%s -i <node_id> -n <image_name> [-p <profile]\n\n" % progname)
-    
+
     profile = 'default'
     node_id = None
 
