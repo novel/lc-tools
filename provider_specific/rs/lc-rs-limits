@@ -1,0 +1,46 @@
+#!/usr/bin/env python
+
+import datetime
+import getopt
+import sys
+
+from lctools.lc import get_lc
+from lctools.printer import Printer
+
+
+def usage(prog):
+    sys.stdout.write("%s [-p <profile>]\n\n" % prog)
+
+if __name__ == "__main__":
+    profile = "default"
+
+    try:
+        opts, args = getopt.getopt(sys.argv[1:], "p:")
+    except getopt.GetoptError, err:
+        sys.stderr.write("%s\n" % str(err))
+        sys.exit(1)
+
+    for o, a in opts:
+        if o == "-p":
+            profile = a
+
+    conn = get_lc(profile)
+
+    rates = conn.ex_limits()
+
+    # print rates
+    sys.stdout.write("Rates:\n\n")
+    rate_format = "%8s %15s %4s %10s %8s %s\n"
+    wrote = sys.stdout.write(rate_format % \
+            ("verb", "URI", "value", "remaining", "unit",
+                "resetTime"))
+    for rate in rates["rate"]:
+        sys.stdout.write(rate_format % \
+                (rate["verb"], rate["URI"], rate["value"],
+                    rate["remaining"], rate["unit"],
+                    datetime.datetime.fromtimestamp(int(rate["resetTime"]))))
+
+    # print absolute limits
+    sys.stdout.write("\nAbsolute limits:\n\n")
+    for key, value in rates["absolute"].iteritems():
+        sys.stdout.write("%s: %s\n" % (key, value))
