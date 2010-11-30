@@ -7,15 +7,19 @@ from lc import get_lc
 from printer import Printer
 
 
-def lister_main(what):
+def lister_main(what, extension=False, **kwargs):
     """Shortcut for main() routine for lister
     tools, e.g. lc-SOMETHING-list
 
     @param what: what we are listing, e.g. 'nodes'
+    @param extension: is it an extension of core libcloud functionality?
+    @param kwargs: additional arguments for the call
     @type what: C{string}
     """
 
     list_method = "list_%s" % what
+    if extension:
+        list_method = "ex_%s" % list_method
     profile = "default"
     format = None
 
@@ -34,7 +38,7 @@ def lister_main(what):
     try:
         conn = get_lc(profile)
 
-        for node in getattr(conn, list_method)():
+        for node in getattr(conn, list_method)(**kwargs):
             Printer.do(node, format)
     except Exception, err:
         sys.stderr.write("Error: %s\n" % str(err))

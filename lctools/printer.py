@@ -11,7 +11,8 @@ readable_status = {NodeState.RUNNING: "Running",
 
 class Printer(object):
     _formats = {"nodeimage": "image %(name)s (id = %(id)s)",
-            "nodesize": "size %(name)s (id=%(id)s, ram=%(ram)s, disk=%(disk)s bandwidth=%(bandwidth)s)"}
+            "nodesize": "size %(name)s (id=%(id)s, ram=%(ram)s, disk=%(disk)s bandwidth=%(bandwidth)s)",
+            "sharedipgroup": "IP group %(name)s (id = %(id)s, servers = %(servers)s)"}
 
     @classmethod
     def do(self, thing, format=None):
