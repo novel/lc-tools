@@ -22,6 +22,7 @@ PROVIDER_TOOLS = os.listdir(PROVIDER_TOOLS_DIR)
 
 scripts_to_install = ["lc-drivers-list",
             "lc-image-list",
+            "lc-locations-list",
             "lc-node-add",
             "lc-node-do",
             "lc-node-list",
