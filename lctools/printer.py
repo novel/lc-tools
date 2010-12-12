@@ -62,3 +62,11 @@ class Printer(object):
         else:
             fmt = "%(id)s\t%(name)s\t%(ip)s\t%(rstatus)s\n"
         sys.stdout.write(fmt % values)
+
+    @classmethod
+    def _print_nodelocation(self, thing, format=None):
+        values = thing.__dict__.copy()
+
+        fmt = "%(id)s\t%(name)s\t%(country)s\n"
+
+        sys.stdout.write(fmt % values)
