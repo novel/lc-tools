@@ -3,4 +3,4 @@
 from lctools.shortcuts import lister_main
 
 if __name__ == "__main__":
-    lister_main('images')
+    lister_main('images', supports_location=True)

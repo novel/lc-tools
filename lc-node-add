@@ -8,7 +8,7 @@ from lctools.printer import Printer
 
 
 def usage(prog):
-    sys.stdout.write("%s -i <image_id> -s <size_id> -n <name> ex_a1=ex_v1 ... ex_aN=ex_vN\n\n" % prog)
+    sys.stdout.write("%s -i <image_id> -s <size_id> -n <name> [-l <location>] ex_a1=ex_v1 ... ex_aN=ex_vN\n\n" % prog)
 
 def process_extra_args(args):
     def value_to_native(value):
@@ -33,10 +33,10 @@ def process_extra_args(args):
 
 if __name__ == "__main__":
     profile = "default"
-    image = size = name = None
+    image = size = location = name = None
 
     try:
-        opts, args = getopt.getopt(sys.argv[1:], "p:i:n:s:")
+        opts, args = getopt.getopt(sys.argv[1:], "p:i:l:n:s:")
     except getopt.GetoptError, err:
         sys.stderr.write("%s\n" % str(err))
         sys.exit(1)
@@ -44,11 +44,13 @@ if __name__ == "__main__":
     for o, a in opts:
         if o == "-p":
             profile = a
-        if o == "-i":
+        elif o == "-i":
             image = a
-        if o == "-n":
+        elif o == "-l":
+            location = a
+        elif o == "-n":
             name = a
-        if o == "-s":
+        elif o == "-s":
             size = a
 
     conn = get_lc(profile)
@@ -61,8 +63,14 @@ if __name__ == "__main__":
     nodesize = filter(lambda sz: str(sz.id).lower() == size.lower(),
             conn.list_sizes())[0]
 
+    if location is not None:
+        nodelocation = filter(lambda loc: str(loc.id) == location,
+                conn.list_locations())[0]
+    else:
+        nodelocation = None
+
     create_node_kwargs = {"name": name, "image": nodeimage,
-            "size": nodesize}
+            "size": nodesize, "location": nodelocation}
 
     create_node_kwargs.update(process_extra_args(args))
 

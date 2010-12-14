@@ -7,20 +7,28 @@ from lc import get_lc
 from printer import Printer
 
 
-def lister_main(what):
+def lister_main(what, supports_location=False):
     """Shortcut for main() routine for lister
     tools, e.g. lc-SOMETHING-list
 
     @param what: what we are listing, e.g. 'nodes'
     @type what: C{string}
+    @param supports_location: tells that objects we
+        listing could be filtered by location
+    @type supports_location: C{bool}
     """
 
     list_method = "list_%s" % what
     profile = "default"
-    format = None
+    format = location = None
+
+    options = "f:p:"
+
+    if supports_location:
+        options += "l:"
 
     try:
-        opts, args = getopt.getopt(sys.argv[1:], "f:p:")
+        opts, args = getopt.getopt(sys.argv[1:], options)
     except getopt.GetoptError, err:
         sys.stderr.write("%s\n" % str(err))
         sys.exit(1)
@@ -30,11 +38,20 @@ def lister_main(what):
             format = a
         if o == "-p":
             profile = a
+        if o == "-l":
+            location = a
 
     try:
         conn = get_lc(profile)
 
-        for node in getattr(conn, list_method)():
+        list_kwargs = {}
+
+        if supports_location and location is not None:
+            nodelocation = filter(lambda loc: str(loc.id) == location,
+                    conn.list_locations())[0]
+            list_kwargs["location"] = nodelocation
+
+        for node in getattr(conn, list_method)(**list_kwargs):
             Printer.do(node, format)
     except Exception, err:
         sys.stderr.write("Error: %s\n" % str(err))
