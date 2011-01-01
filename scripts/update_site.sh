@@ -9,14 +9,14 @@ PROJECT_DIR="`pwd`/.."
 LCTOOLS_VERSION="`cat ${PROJECT_DIR}/VERSION`"
 
 ## path settings
-SITEDIR="tmp"
+SITEDIR=~/lctools_doc
 TUTORIAL_SOURCE_PATH="${PROJECT_DIR}/doc/tutorial.tex"
 TUTORIAL_OUTPUT_PATH="${SITEDIR}/doc/${LCTOOLS_VERSION}/tutorial"
 MAN_INPUT_PATH="${PROJECT_DIR}/man"
 MAN_OUTPUT_PATH="${SITEDIR}/doc/${LCTOOLS_VERSION}/man"
 
 ## commands
-LATEX2HTML="latex2html"
+LATEX2HTML="latex2html -verbosity 0 -info 0"
 RONN="ronn"
 
 #echo ${PROJECT_DIR}
@@ -32,7 +32,7 @@ build_tutorial() {
 	echo " * building tutorial"
 
 	mkdir -p ${TUTORIAL_OUTPUT_PATH} > /dev/null 2>&1
-	${LATEX2HTML} -verbosity 0 -dir ${TUTORIAL_OUTPUT_PATH} \
+	${LATEX2HTML} -dir ${TUTORIAL_OUTPUT_PATH} \
 		${TUTORIAL_SOURCE_PATH} > /dev/null 2>&1
 }
 
@@ -48,11 +48,17 @@ build_man() {
 	done
 }
 
-git checkout ${BRANCH}
-cd ${PROJECT_DIR}
+create_latest_link() {
+	echo " * creating symlinks"
+	rm -f "${SITEDIR}/doc/latest"
+	cd "${SITEDIR}/doc" && \
+		ln -s "${LCTOOLS_VERSION}" "latest"
+}
 
-#prepare_work_dir
+prepare_work_dir
 
 build_man
 
 build_tutorial
+
+create_latest_link
