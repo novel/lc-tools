@@ -9,6 +9,8 @@ from distutils.core import setup
 from distutils.command.install import install
 from distutils.command.sdist import sdist
 
+VERSION = open("VERSION").read().strip()
+
 def abspath(path):
     """A method to determine absolute path
     for a relative path inside project's directory."""
@@ -79,7 +81,7 @@ class lc_sdist(sdist):
         os.remove("README")
 
 setup(name="lctools",
-        version="0.1.4",
+        version=VERSION,
         description="CLI tools for managing clouds, based on libcloud",
         author="Roman Bogorodskiy",
         author_email="bogorodskiy@gmail.com",
