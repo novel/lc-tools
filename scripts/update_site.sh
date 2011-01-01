@@ -49,9 +49,9 @@ build_man() {
 }
 
 git checkout ${BRANCH}
-exit
+cd ${PROJECT_DIR}
 
-prepare_work_dir
+#prepare_work_dir
 
 build_man
 
