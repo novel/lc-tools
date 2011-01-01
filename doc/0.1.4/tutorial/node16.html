@@ -1,0 +1,106 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2008 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Operations on Individual Nodes</TITLE>
+<META NAME="description" CONTENT="Operations on Individual Nodes">
+<META NAME="keywords" CONTENT="tutorial">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2008">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="tutorial.css">
+
+<LINK REL="previous" HREF="node15.html">
+<LINK REL="up" HREF="node9.html">
+<LINK REL="next" HREF="node17.html">
+</HEAD>
+
+<BODY >
+
+<DIV CLASS="navigation"><!--Navigation Panel-->
+<A NAME="tex2html238"
+  HREF="node17.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="/usr/share/latex2html/icons/next.png"></A> 
+<A NAME="tex2html234"
+  HREF="node9.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="/usr/share/latex2html/icons/up.png"></A> 
+<A NAME="tex2html230"
+  HREF="node15.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="/usr/share/latex2html/icons/prev.png"></A> 
+<A NAME="tex2html236"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="/usr/share/latex2html/icons/contents.png"></A>  
+<BR>
+<B> Next:</B> <A NAME="tex2html239"
+  HREF="node17.html">Provider Specific</A>
+<B> Up:</B> <A NAME="tex2html235"
+  HREF="node9.html">Basic Usage</A>
+<B> Previous:</B> <A NAME="tex2html231"
+  HREF="node15.html">Listing Nodes</A>
+ &nbsp; <B>  <A NAME="tex2html237"
+  HREF="node1.html">Contents</A></B> 
+<BR>
+<BR></DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION00047000000000000000">
+Operations on Individual Nodes</A>
+</H2>
+       Tool called <TT>lc-node-do</TT> allows to operate on individual nodes.
+       Currently, it allows rebooting and destroying (deleting) nodes.
+
+<P>
+It can be done this way:
+
+<P>
+<PRE>
+        $ lc-node-do -i 123 destroy # for deleting
+        $ lc-node-do -i 124 reboot  # for rebooting
+</PRE>
+
+<P>
+Here an arugment for <TT>-i</TT> switch is an id of the node we're working
+       with and the next arugment is an action, i.e. what we want to do with the node.
+
+<P>
+It's possible to specify more than one node id at time, for example:
+
+<P>
+<PRE>
+        $ lc-node-do -i 10,34,98 destroy
+        $
+</PRE>
+
+<P>
+This command will destory nodes with ids: 10, 34 and 98. Also, it's possible to
+       specify ranges of ids like that:
+
+<P>
+<PRE>
+        $ lc-node-do -i 100-119 destroy
+        $
+</PRE>
+
+<P>
+This will destroy nodes with ids starting from 100 and ending with 119.
+
+<P>
+<BR><HR>
+<ADDRESS>
+
+2011-01-01
+</ADDRESS>
+</BODY>
+</HTML>

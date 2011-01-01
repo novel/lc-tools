@@ -1,0 +1,152 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2008 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Installing from source</TITLE>
+<META NAME="description" CONTENT="Installing from source">
+<META NAME="keywords" CONTENT="tutorial">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2008">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="tutorial.css">
+
+<LINK REL="previous" HREF="node6.html">
+<LINK REL="up" HREF="node4.html">
+<LINK REL="next" HREF="node8.html">
+</HEAD>
+
+<BODY >
+
+<DIV CLASS="navigation"><!--Navigation Panel-->
+<A NAME="tex2html127"
+  HREF="node8.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="/usr/share/latex2html/icons/next.png"></A> 
+<A NAME="tex2html123"
+  HREF="node4.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="/usr/share/latex2html/icons/up.png"></A> 
+<A NAME="tex2html119"
+  HREF="node6.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="/usr/share/latex2html/icons/prev.png"></A> 
+<A NAME="tex2html125"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="/usr/share/latex2html/icons/contents.png"></A>  
+<BR>
+<B> Next:</B> <A NAME="tex2html128"
+  HREF="node8.html">Configuring</A>
+<B> Up:</B> <A NAME="tex2html124"
+  HREF="node4.html">Installing</A>
+<B> Previous:</B> <A NAME="tex2html120"
+  HREF="node6.html">Installing from PyPI</A>
+ &nbsp; <B>  <A NAME="tex2html126"
+  HREF="node1.html">Contents</A></B> 
+<BR>
+<BR></DIV>
+<!--End of Navigation Panel-->
+
+<H3><A NAME="SECTION00031300000000000000"></A> <A NAME="instsrc"></A>
+<BR>
+Installing from source
+</H3>
+          To get latest development version you can checkout sources from 
+          https://github.com/novel/lc-toolsproject's github page:
+
+<P>
+<PRE>
+           git clone https://github.com/novel/lc-tools.git
+</PRE>
+
+<P>
+Now you should have all the sources and should be ready to proceed to
+          installation. As <TT>lc-tools</TT> use <TT>setuptools</TT> installation
+          process is fairly simple:
+
+<P>
+<PRE>
+           $ cd lc-tools
+           $ sudo python setup.py install
+</PRE>
+
+<P>
+This will install all the tools and you will be able to use them
+         after configuration (you will know how to configure <TT>lc-tools</TT>
+         in the next section: conf).
+
+<P>
+However, there are some additional tools available in <TT>lc-tools</TT>
+         that's not installed by default - it's various provider specific tools.
+
+<P>
+What are provider specific tools, you might ask. You see, <TT>libcloud</TT>
+         is designed to provide an unified API to the cloud, so its model is almost
+         an intersection of APIs of various cloud providers. However, various
+         provider can have its specific API calls, for example, profider Foo might
+         have a call to return information how many servers could be created in
+         your current account or, say, what's the maximum allowed rate of requests
+         to the API per minute. Usually such features are implemented in <TT>libcloud</TT>
+         as extra calls and are not available in common API. So in order to be able
+         to use this features, provider specific tools has to be written.
+
+<P>
+Currently, <TT>lc-tools</TT> supports such scripts for Rackspace and GoGrid.
+         In order to enable them both, please use the command:
+
+<P>
+<PRE>
+          $ sudo python setup.py install --providertools="gg rs"
+</PRE>
+
+<P>
+This means that we're installing additional tools for GoGrid (gg) and
+         Rackspace (rs). Please refer to provspec to details on usage
+         of this tools.
+
+<P>
+<SPAN  CLASS="textbf">Note!</SPAN>: latest development version requires latest <TT>libcloud</TT>
+         sources!
+      
+<DIV CLASS="navigation"><HR>
+<!--Navigation Panel-->
+<A NAME="tex2html127"
+  HREF="node8.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="/usr/share/latex2html/icons/next.png"></A> 
+<A NAME="tex2html123"
+  HREF="node4.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="/usr/share/latex2html/icons/up.png"></A> 
+<A NAME="tex2html119"
+  HREF="node6.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="/usr/share/latex2html/icons/prev.png"></A> 
+<A NAME="tex2html125"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="/usr/share/latex2html/icons/contents.png"></A>  
+<BR>
+<B> Next:</B> <A NAME="tex2html128"
+  HREF="node8.html">Configuring</A>
+<B> Up:</B> <A NAME="tex2html124"
+  HREF="node4.html">Installing</A>
+<B> Previous:</B> <A NAME="tex2html120"
+  HREF="node6.html">Installing from PyPI</A>
+ &nbsp; <B>  <A NAME="tex2html126"
+  HREF="node1.html">Contents</A></B> </DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+
+2011-01-01
+</ADDRESS>
+</BODY>
+</HTML>

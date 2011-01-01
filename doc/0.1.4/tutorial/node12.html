@@ -1,0 +1,93 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2008 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Listing Images</TITLE>
+<META NAME="description" CONTENT="Listing Images">
+<META NAME="keywords" CONTENT="tutorial">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2008">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="tutorial.css">
+
+<LINK REL="next" HREF="node13.html">
+<LINK REL="previous" HREF="node11.html">
+<LINK REL="up" HREF="node9.html">
+<LINK REL="next" HREF="node13.html">
+</HEAD>
+
+<BODY >
+
+<DIV CLASS="navigation"><!--Navigation Panel-->
+<A NAME="tex2html192"
+  HREF="node13.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="/usr/share/latex2html/icons/next.png"></A> 
+<A NAME="tex2html188"
+  HREF="node9.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="/usr/share/latex2html/icons/up.png"></A> 
+<A NAME="tex2html182"
+  HREF="node11.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="/usr/share/latex2html/icons/prev.png"></A> 
+<A NAME="tex2html190"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="/usr/share/latex2html/icons/contents.png"></A>  
+<BR>
+<B> Next:</B> <A NAME="tex2html193"
+  HREF="node13.html">Listing Sizes</A>
+<B> Up:</B> <A NAME="tex2html189"
+  HREF="node9.html">Basic Usage</A>
+<B> Previous:</B> <A NAME="tex2html183"
+  HREF="node11.html">General Info</A>
+ &nbsp; <B>  <A NAME="tex2html191"
+  HREF="node1.html">Contents</A></B> 
+<BR>
+<BR></DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION00043000000000000000">
+Listing Images</A>
+</H2>
+            You can list available images using <TT>lc-image-list</TT> tool. Here
+            is a sample of its output:
+
+<P>
+<PRE>
+         $ lc-image-list|grep -i centos
+         image CentOS 5.2 (32-bit) w/ RightScale (id = 62)
+         image CentOS 5.2 (64-bit) w/ RightScale (id = 63)
+         image CentOS 5.3 (32-bit) w/ None (id = 1531)
+         image CentOS 5.3 (64-bit) w/ None (id = 1532)
+         $
+</PRE>
+
+<P>
+The first line is a shell command we've issued. I've piped it to
+         <TT>grep</TT> to output only images containing 'centos' it their names,
+         otherwise the list would be too long. 
+
+<P>
+For every image you see its name and id, for example for 
+        <SPAN  CLASS="textit">CentOS 5.3 (64-bit) w/ None</SPAN> id will be <TT>1532</TT>. Please
+        remember it because you will need it if you're going to use this
+        image.
+
+<P>
+<BR><HR>
+<ADDRESS>
+
+2011-01-01
+</ADDRESS>
+</BODY>
+</HTML>
