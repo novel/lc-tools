@@ -41,11 +41,16 @@ build_man() {
 
 	mkdir -p ${MAN_OUTPUT_PATH} > /dev/null 2>&1
 
+	echo "<html><body><ul>" > ${MAN_OUTPUT_PATH}/index.html
+
 	for man in ${MAN_INPUT_PATH}/*.ronn; do
 		HTML_OUTPUT=`basename ${man}|sed -e 's|ronn$|html|'`
 		${RONN} --html --pipe ${man} > \
 			${MAN_OUTPUT_PATH}/${HTML_OUTPUT};
+		echo "<li><a href='${HTML_OUTPUT}'>${HTML_OUTPUT}</a></li>" >> ${MAN_OUTPUT_PATH}/index.html
 	done
+
+	echo "</ul></body></html>" >> ${MAN_OUTPUT_PATH}/index.html
 }
 
 create_latest_link() {
