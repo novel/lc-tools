@@ -2,6 +2,9 @@
 #
 # Script to update dynamic parts of the site.
 
+
+## general settings
+BRANCH="gh-pages"
 PROJECT_DIR="`pwd`/.."
 LCTOOLS_VERSION="`cat ${PROJECT_DIR}/VERSION`"
 
@@ -45,7 +48,7 @@ build_man() {
 	done
 }
 
-git checkout gh-pages
+git checkout ${BRANCH}
 exit
 
 prepare_work_dir
