@@ -6,7 +6,7 @@ def int_sequence(sequence):
     """Function to transform integer suquences like '3-7,45,34-36' 
     and so forth to a list of integers, so for the sample sequence
     listed above it would be [3, 4, 5, 6, 7, 45, 34, 35, 36]
-    
+
     @param sequence: sequence to be parsed
     @type sequence: str
     @return: list of integers
