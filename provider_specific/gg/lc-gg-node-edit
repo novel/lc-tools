@@ -1,0 +1,45 @@
+#!/usr/bin/env python
+
+import getopt
+import sys
+
+from lctools.lc import get_lc
+
+def usage(progname):
+    sys.stdout.write("%s -i <node_id> -s <size_id>\n\n" % \
+            progname)
+
+if __name__ == "__main__":
+    profile = "default"
+    node_id = size_id = None
+
+    try:
+        opts, args = getopt.getopt(sys.argv[1:], "p:i:s:")
+    except getopt.GetoptError, err:
+        sys.stdout.write("%s\n" % str(err))
+        sys.exit(1)
+
+    for o, a in opts:
+        if o == "-p":
+            profile = a
+        elif o == "-i":
+            node_id = a
+        elif o == "-s":
+            size_id = a
+
+    if node_id is None or size_id is None:
+        usage(sys.argv[0])
+        sys.exit(1)
+
+    conn = get_lc(profile)
+
+    try:
+        node = [node for node in conn.list_nodes() if \
+                str(node.id) == node_id][0]
+        size = [size for size in conn.list_sizes() if \
+                str(size.id) == size_id][0]
+    except IndexError:
+        sys.stderr.write("Specified node or size wasn't found\n")
+        sys.exit(1)
+
+    conn.ex_edit_node(node=node, size=size, description='updated node')
