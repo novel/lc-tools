@@ -28,9 +28,7 @@ scripts_to_install = ["lc-drivers-list",
             "lc-node-add",
             "lc-node-do",
             "lc-node-list",
-            "lc-sizes-list",
-            "lc-ip-group-do",
-            "lc-ip-group-list"]
+            "lc-sizes-list"]
 
 class lc_install(install):
     user_options = install.user_options
