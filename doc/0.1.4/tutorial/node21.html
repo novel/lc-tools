@@ -7,8 +7,8 @@ original version by:  Nikos Drakos, CBLU, University of Leeds
   Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
 <HTML>
 <HEAD>
-<TITLE>Rackspace</TITLE>
-<META NAME="description" CONTENT="Rackspace">
+<TITLE>Resizing a Node</TITLE>
+<META NAME="description" CONTENT="Resizing a Node">
 <META NAME="keywords" CONTENT="tutorial">
 <META NAME="resource-type" CONTENT="document">
 <META NAME="distribution" CONTENT="global">
@@ -18,48 +18,68 @@ original version by:  Nikos Drakos, CBLU, University of Leeds
 
 <LINK REL="STYLESHEET" HREF="tutorial.css">
 
-<LINK REL="previous" HREF="node18.html">
-<LINK REL="up" HREF="node17.html">
+<LINK REL="previous" HREF="node20.html">
+<LINK REL="up" HREF="node18.html">
+<LINK REL="next" HREF="node22.html">
 </HEAD>
 
 <BODY >
 
 <DIV CLASS="navigation"><!--Navigation Panel-->
+<A NAME="tex2html305"
+  HREF="node22.html">
 <IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
- SRC="/usr/share/latex2html/icons/next_g.png"> 
-<A NAME="tex2html294"
-  HREF="node17.html">
+ SRC="/usr/share/latex2html/icons/next.png"></A> 
+<A NAME="tex2html301"
+  HREF="node18.html">
 <IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
  SRC="/usr/share/latex2html/icons/up.png"></A> 
-<A NAME="tex2html290"
+<A NAME="tex2html297"
   HREF="node20.html">
 <IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
  SRC="/usr/share/latex2html/icons/prev.png"></A> 
-<A NAME="tex2html296"
+<A NAME="tex2html303"
   HREF="node1.html">
 <IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
  SRC="/usr/share/latex2html/icons/contents.png"></A>  
 <BR>
-<B> Up:</B> <A NAME="tex2html295"
-  HREF="node17.html">Provider Specific</A>
-<B> Previous:</B> <A NAME="tex2html291"
+<B> Next:</B> <A NAME="tex2html306"
+  HREF="node22.html">Rackspace</A>
+<B> Up:</B> <A NAME="tex2html302"
+  HREF="node18.html">GoGrid</A>
+<B> Previous:</B> <A NAME="tex2html298"
   HREF="node20.html">Creating an Image from</A>
- &nbsp; <B>  <A NAME="tex2html297"
+ &nbsp; <B>  <A NAME="tex2html304"
   HREF="node1.html">Contents</A></B> 
 <BR>
 <BR></DIV>
 <!--End of Navigation Panel-->
 
-<H2><A NAME="SECTION00052000000000000000">
-Rackspace</A>
-</H2><TT><TT>
-TODO
+<H3><A NAME="SECTION00051300000000000000">
+Resizing a Node</A>
+</H3>
+<P>
+<TT><TT><SPAN  CLASS="textit">Availability: gg</SPAN>
 </TT></TT>
 <P>
+<TT><TT>GoGrid has introduced an ability to change a size of running node in API version <TT>1.6.
+Suppose, we have a node with id <TT>100 and 1Gb amount of RAM and we want to increase it
+to 2Gb. In this case <TT>lc-gg-node-edit</TT> tool may prove helpful:
+</TT></TT></TT></TT>
+<P>
+<TT></TT><PRE>
+$ lc-gg-node-edit -i 100 -s 2GB
+</PRE><TT></TT>
+<P>
+<TT><TT><TT><TT>Here, <TT>-i</TT> switch specifies id of a node we want to modify and <TT>-s</TT> specifies
+id of a size we want to use for the node.
+</TT></TT></TT></TT>
+<P>
+<TT></TT>
 <BR><HR>
 <ADDRESS>
 
-2011-01-01
+2011-01-06
 </ADDRESS>
 </BODY>
 </HTML>
