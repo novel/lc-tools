@@ -50,7 +50,7 @@
 
          However, there are some additional tools available in {\tt lc-tools}
          that's not installed by default -- it's various provider specific tools.
-         
+
          What are provider specific tools, you might ask. You see, {\tt libcloud}
          is designed to provide an unified API to the cloud, so its model is almost
          an intersection of APIs of various cloud providers. However, various
@@ -295,7 +295,7 @@ that you should configure {\tt lc-tools} to install GoGrid specific scripts pass
 to \texttt{setup.py install}. Please refer to \nameref{instsrc} for more details on that.
 
 \subsection{GoGrid}
-\subsubsection{Creating a sandbox server}
+\subsubsection{Creating a Sandbox Server}
 
 \textit{Availability: default}
 
@@ -318,7 +318,7 @@ more details on sandboxes and server images.
 
 \textit{Availability: gg}
 
-Once you have prepared your sandbox server for image creation you can do it with 
+Once you have prepared your sandbox server for image creation you can do it with
 \texttt{lc-gg-image-save} tool:
 
 \begin{verbatim}
@@ -332,7 +332,53 @@ Note: at the time of writing preparing an image is not quite trivial and involve
 to the box over ssh and running some scripts. Please refer to 
 \href{http://wiki.gogrid.com/wiki/index.php/MyGSI}{GoGrid wiki} for details.
 
+\subsubsection{Resizing a Node}
+
+\textit{Availability: gg}
+
+GoGrid has introduced an ability to change a size of running node in API version \tt{1.6}.
+Suppose, we have a node with id \tt{100} and 1Gb amount of RAM and we want to increase it
+to 2Gb. In this case \texttt{lc-gg-node-edit} tool may prove helpful:
+
+\begin{verbatim}
+$ lc-gg-node-edit -i 100 -s 2GB
+\end{verbatim}
+
+Here, \texttt{-i} switch specifies id of a node we want to modify and \texttt{-s} specifies
+id of a size we want to use for the node.
+
 \subsection{Rackspace}
-TODO
+
+\subsubsection{Checking Limits}
+
+\texttt{Availability: rs}
+
+Rackspace binds various limits to accounts. These limits might be absolute, like a
+maximum total value of RAM consumed by all servers or these might be daily limits
+(i.e. they are reseted periodically), for example number of POST requests per minute.
+
+\texttt{lc-rs-limits} tool displays current state of limits for your Rackspace account:
+
+\begin{verbatim}
+$ lc-rs-limits
+Rates:
+    
+    verb             URI value  remaining     unit resetTime
+     PUT               *   10         10   MINUTE 2011-01-06 16:12:04
+     GET *changes-since*    3          3   MINUTE 2011-01-06 16:12:04
+    POST               *   10         10   MINUTE 2011-01-06 16:12:04
+    POST       /servers*  500        500      DAY 2011-01-06 16:12:04
+  DELETE               *  600        600   MINUTE 2011-01-06 16:12:04
+
+Absolute limits:
+
+maxPrivateIPs: 10
+maxTotalRAMSize: 921600
+maxIPGroupMembers: 25
+maxIPGroups: 25
+\end{verbatim}
+
+Please refer to Rackspace documentation for better information of the
+limits information presented by \texttt{lc-rs-limits}.
 
 \end{document}
