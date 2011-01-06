@@ -27,5 +27,10 @@ class TestConfig(object):
         config.LC_CONFIG = self.test_filename
         config.get_config("default")
 
+    def test_defaults(self):
+        config.LC_CONFIG = self.test_filename
+        conf = config.get_config("default")
+        print conf.get("verify_ssl_certs")
+
     def teardown(self):
         os.unlink(self.test_filename)
