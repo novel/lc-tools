@@ -1,5 +1,9 @@
 0.1.4
 
+- Added tools for controlling Rackspace shared
+  IP groups: lc-rs-ip-group-list and
+  lc-rs-ip-group-do
+
 - Added config file option for SSL certs verification.
   Please add the following to the profile for which
   you want to enabe verification:
