@@ -1,0 +1,69 @@
+#!/usr/bin/env python
+
+import getopt
+import sys
+
+from lctools.lc import get_lc
+from lctools.printer import Printer
+from lctools.utils import int_sequence, is_int_sequence
+
+def usage(progname):
+    sys.stdout.write("%s -g ip_group_id -i node_id -a ip_address -c configure? [share|unshare|delete]\n\n" % progname)
+
+if __name__ == "__main__":
+    profile = "default"
+    group_id = None
+    node_id = None
+    ip_address = None
+    configure_node = False
+
+    try:
+        opts, args = getopt.getopt(sys.argv[1:], "p:i:g:a:c:")
+    except getopt.GetoptError, err:
+        sys.stderr.write("%s\n" % str(err))
+        sys.exit(1)
+
+    for o, a in opts:
+        if o == "-p":
+            profile = a
+        elif o == "-g":
+            group_id = a
+        elif o == "-i":
+            node_id = a
+        elif o == "-a":
+            ip_address = a
+        elif o == "-c":
+            configure_node = a.lower() in ('1', 'true', 'yes')
+
+    if 0 == len(args):
+        usage(sys.argv[0])
+        sys.exit(1)
+
+    action = args[0]
+
+    if (action in ('share', 'delete') and group_id is None) or \
+        (action in ('share', 'unshare') and (node_id is None or ip_address is None)):
+        usage(sys.argv[0])
+        sys.exit(1)
+
+    conn = get_lc(profile)
+
+    if "delete" == action:
+        existing_groups = conn.ex_list_ip_groups(details=True)
+
+        try:
+            group = filter(lambda group: str(group.id) == str(group_id),
+                existing_groups)[0]
+        except IndexError:
+            sys.stderr.write("No IP group with id %s found.\n" % group_id)
+            sys.exit(1)
+
+        if group.servers:
+            sys.stdout.write("Leaving group %s intact as it contains servers %s\n" % (
+                group_id, ", ".join(group.servers)))
+        else:
+            conn.ex_delete_ip_group(group_id)
+    elif "share" == action:
+        conn.ex_share_ip(group_id, node_id, ip_address, configure_node)
+    elif "unshare" == action:
+        conn.ex_unshare_ip(node_id, ip_address)

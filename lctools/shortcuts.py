@@ -7,18 +7,20 @@ from lc import get_lc
 from printer import Printer
 
 
-def lister_main(what, supports_location=False):
+def lister_main(what, extension=False, supports_location=False, **kwargs):
     """Shortcut for main() routine for lister
     tools, e.g. lc-SOMETHING-list
 
     @param what: what we are listing, e.g. 'nodes'
+    @param extension: is it an extension of core libcloud functionality?
+    @param kwargs: additional arguments for the call
     @type what: C{string}
     @param supports_location: tells that objects we
         listing could be filtered by location
     @type supports_location: C{bool}
     """
 
-    list_method = "list_%s" % what
+    list_method = "%slist_%s" % ({True: 'ex_', False: ''}[extension], what)
     profile = "default"
     format = location = None
 
@@ -44,7 +46,7 @@ def lister_main(what, supports_location=False):
     try:
         conn = get_lc(profile)
 
-        list_kwargs = {}
+        list_kwargs = kwargs
 
         if supports_location and location is not None:
             nodelocation = filter(lambda loc: str(loc.id) == location,
