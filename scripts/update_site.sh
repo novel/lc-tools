@@ -67,3 +67,5 @@ build_man
 build_tutorial
 
 create_latest_link
+
+echo "Preview: file://${SITEDIR}"
