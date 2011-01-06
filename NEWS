@@ -1,5 +1,19 @@
 0.1.4
 
+- Added config file option for SSL certs verification.
+  Please add the following to the profile for which
+  you want to enabe verification:
+
+     verify_ssl_certs = true
+
+  By default it's disabled.
+
+- Added GoGrid specific script: lc-gg-node-edit
+  which allows to change node's amount of RAM
+  and description. Sample:
+
+     lc-gg-node-edit -i <node_id> -s <new_size>
+
 - Added ranges support for lc-node-do's -i arg, i.e.
   if previosuly to remove nodes with ids like
   1001, 1002, 1003 you had to issue command like:
