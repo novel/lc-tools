@@ -34,3 +34,15 @@ PRE.preform		{   }
 SPAN.textit		{ font-style: italic  }
 SPAN.arabic		{   }
 SPAN.textbf		{ font-weight: bold  }
+
+body { width: 57%; margin-left: 120px; }
+
+pre {
+	border: 1px solid gray;
+	background-color: #E9E9E9;
+	padding: 1ex;
+	font-family: monospace;
+	margin: 0.75em 0;
+}
+
+tt { background-color: #E9E9E9; }
