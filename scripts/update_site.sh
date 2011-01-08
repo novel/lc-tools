@@ -16,7 +16,7 @@ MAN_INPUT_PATH="${PROJECT_DIR}/man"
 MAN_OUTPUT_PATH="${SITEDIR}/doc/${LCTOOLS_VERSION}/man"
 
 ## commands
-LATEX2HTML="latex2html -verbosity 0 -info 0"
+LATEX2HTML="latex2html -verbosity 0 -info 0 -show_section_numbers -local_icons"
 RONN="ronn"
 
 #echo ${PROJECT_DIR}
