@@ -34,6 +34,7 @@ build_tutorial() {
 	mkdir -p ${TUTORIAL_OUTPUT_PATH} > /dev/null 2>&1
 	${LATEX2HTML} -dir ${TUTORIAL_OUTPUT_PATH} \
 		${TUTORIAL_SOURCE_PATH} > /dev/null 2>&1
+	cp tutorial.css ${TUTORIAL_OUTPUT_PATH}
 }
 
 build_man() {
