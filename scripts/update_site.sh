@@ -17,6 +17,7 @@ MAN_OUTPUT_PATH="${SITEDIR}/doc/${LCTOOLS_VERSION}/man"
 
 ## commands
 LATEX2HTML="latex2html -verbosity 0 -info 0 -show_section_numbers -local_icons"
+PDFLATEX="pdflatex"
 RONN="ronn"
 
 #echo ${PROJECT_DIR}
@@ -29,12 +30,16 @@ prepare_work_dir() {
 }
 
 build_tutorial() {
-	echo " * building tutorial"
+	echo " * building HTML tutorial"
 
 	mkdir -p ${TUTORIAL_OUTPUT_PATH} > /dev/null 2>&1
 	${LATEX2HTML} -dir ${TUTORIAL_OUTPUT_PATH} \
 		${TUTORIAL_SOURCE_PATH} > /dev/null 2>&1
 	cp tutorial.css ${TUTORIAL_OUTPUT_PATH}
+
+	echo " * building PDF tutorial"
+	${PDFLATEX} -output-directory ${TUTORIAL_OUTPUT_PATH} \
+		${TUTORIAL_SOURCE_PATH} > /dev/null 2>&1
 }
 
 build_man() {
