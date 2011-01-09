@@ -6,21 +6,23 @@ import sys
 from lctools.lc import get_lc
 
 def usage(progname):
-    sys.stdout.write("%s -i <node_id> -s <size_id>\n\n" % \
+    sys.stdout.write("%s -i <node_id> -s <size_id> [-d <descr>]\n\n" % \
             progname)
 
 if __name__ == "__main__":
     profile = "default"
-    node_id = size_id = None
+    node_id = size_id = descr = None
 
     try:
-        opts, args = getopt.getopt(sys.argv[1:], "p:i:s:")
+        opts, args = getopt.getopt(sys.argv[1:], "d:p:i:s:")
     except getopt.GetoptError, err:
         sys.stdout.write("%s\n" % str(err))
         sys.exit(1)
 
     for o, a in opts:
-        if o == "-p":
+        if o == "-d":
+            descr = a
+        elif o == "-p":
             profile = a
         elif o == "-i":
             node_id = a
@@ -42,4 +44,8 @@ if __name__ == "__main__":
         sys.stderr.write("Specified node or size wasn't found\n")
         sys.exit(1)
 
-    conn.ex_edit_node(node=node, size=size, description='updated node')
+    params = {"node": node, "size": size}
+    if descr is not None:
+        params["ex_description"] = descr
+
+    conn.ex_edit_node(**params)
