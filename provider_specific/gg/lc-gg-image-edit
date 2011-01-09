@@ -1,0 +1,56 @@
+#!/usr/bin/env python
+
+import getopt
+import sys
+
+from lctools.lc import get_lc
+
+def usage(progname):
+    sys.stdout.write("%s -i <image_id> -t [true|false] [-n <name>] [-d <descr>]\n\n" % \
+            progname)
+
+if __name__ == "__main__":
+    profile = "default"
+    image_id = is_public = name = descr = None
+
+    try:
+        opts, args = getopt.getopt(sys.argv[1:], "d:i:n:p:t:")
+    except getopt.GetoptError, err:
+        sys.stdout.write("%s\n" % str(err))
+        sys.exit(1)
+
+    for o, a in opts:
+        if o == "-p":
+            profile = a
+        elif o == "-i":
+            image_id = a
+        elif o == "-t":
+            is_public = a in ("true", "1")
+        elif o == "-n":
+            name = a
+        elif o == "-d":
+            descr = a
+
+
+    if image_id is None or is_public is None:
+        usage(sys.argv[0])
+        sys.exit(1)
+
+    conn = get_lc(profile)
+
+    try:
+        image = [image for image in conn.list_images() if \
+                str(image.id) == image_id][0]
+    except IndexError:
+        sys.stderr.write("Specified node or size wasn't found\n")
+        sys.exit(1)
+
+    params = {"image": image,
+        "public": is_public}
+
+    if descr is not None:
+        params["ex_description"] = descr
+    if name is not None:
+        params["name"] = name
+
+    conn.ex_edit_image(**params)
