@@ -1,5 +1,7 @@
 ## lc-tools
 
+http://novel.github.com/lc-tools/
+
 lc-tools is a set of command line tools to control various clouds. It
 uses libcloud for cloud related stuff so should support as much cloud
 providers as libcloud does.
