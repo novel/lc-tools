@@ -1,17 +1,6 @@
-0.1.5
-
-- Added tool to edit GoGrid images: lc-gg-image-edit.
-  Brief info on usage:
-
-      lc-gg-image-edit -i <image_id> -t true \
-                -n new_name -d new_descr
-
-  Here, "-t true" tells that given image should be
-  public (i.e. visible to all GoGrid users),
-  "-n new_name" and "-d new_descr" update image name
-  and description respectively.
-
 0.1.4
+
+- Roll 0.1.4. Requires libcloud 0.4.2 or newer
 
 - Added tools for controlling Rackspace shared
   IP groups: lc-rs-ip-group-list and
