@@ -10,9 +10,9 @@ sudo python setup.py install
 
 ## Documnetation
 
-Tutorial for the latest version is available online:
+Tutorial for 0.1.4 is available online:
 
-http://novel.github.com/lc-tools/doc/latest/tutorial/
+http://novel.github.com/lc-tools/doc/0.1.4/tutorial/
 
 This README contains basic information how to get started.
 
