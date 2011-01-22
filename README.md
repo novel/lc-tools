@@ -8,6 +8,14 @@ providers as libcloud does.
 
 sudo python setup.py install
 
+## Documnetation
+
+Tutorial for the latest version is available online:
+
+http://novel.github.com/lc-tools/doc/latest/tutorial/
+
+This README contains basic information how to get started.
+
 ## Getting started
 
 We will use GoGrid as example.
