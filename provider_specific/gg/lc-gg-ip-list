@@ -1,0 +1,38 @@
+#!/usr/bin/env python
+
+import getopt
+import sys
+
+from lctools.lc import get_lc
+from lctools.printer import Printer
+from lctools.shortcuts import lister_main
+
+if __name__ == "__main__":
+    profile = "default"
+    assigned = public = location = None
+
+    try:
+        opts, args = getopt.getopt(sys.argv[1:], "a:p:l:u:")
+    except getopt.GetoptError, err:
+        sys.stderr.write("%s\n" % str(err))
+        sys.exit(1)
+
+    for o, a in opts:
+        if o == "-p":
+            profile = a
+        elif o == "-a":
+            assigned = a == "true"
+        elif o == "-l":
+            location = a
+        elif o == "-u":
+            public = a == "true"
+    
+    conn = get_lc(profile)
+
+    list_kwargs = {"assigned": assigned, "public": public}
+
+    if location is not None:
+        list_kwargs["location"] = [loc for loc in conn.list_locations()
+                if str(loc.id) == location][0]
+
+    [Printer.do(ip) for ip in conn.ex_list_ips(**list_kwargs)]
