@@ -1,5 +1,17 @@
 0.1.5
 
+- Added tool to list GoGrid IP addresses: lc-gg-ip-list:
+
+      lc-gg-ip-list # lists all ips for account
+      lc-gg-ip-list -a false -u true # lists public \
+                                # unassigned ips
+
+- lc-node-add nows accepts 'ip' arg for GoGrid with the IP
+  to use for a node, like:
+
+      lc-node-add ..... ip=10.0.0.1 # where 10.0.0.1 is  \
+		# an ip you want to assign to node
+
 - Added tool to edit GoGrid images: lc-gg-image-edit.
   Brief info on usage:
 
