@@ -1,0 +1,94 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>0.4.2.1 Checking Limits</TITLE>
+<META NAME="description" CONTENT="0.4.2.1 Checking Limits">
+<META NAME="keywords" CONTENT="tutorial">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="tutorial.css">
+
+<LINK REL="previous" HREF="node23.html">
+<LINK REL="up" HREF="node23.html">
+</HEAD>
+
+<BODY >
+<!--Navigation Panel-->
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next_g.png"> 
+<A NAME="tex2html337"
+  HREF="node23.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html333"
+  HREF="node23.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html339"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A>  
+<BR>
+<B> Up:</B> <A NAME="tex2html338"
+  HREF="node23.html">0.4.2 Rackspace</A>
+<B> Previous:</B> <A NAME="tex2html334"
+  HREF="node23.html">0.4.2 Rackspace</A>
+ &nbsp; <B>  <A NAME="tex2html340"
+  HREF="node1.html">Contents</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H3><A NAME="SECTION00052100000000000000">
+0.4.2.1 Checking Limits</A>
+</H3>
+
+<P>
+<I>Availability: rs</I>
+
+<P>
+Rackspace binds various limits to accounts. These limits might be absolute, like a
+maximum total value of RAM consumed by all servers or these might be daily limits
+(i.e. they are reseted periodically), for example number of POST requests per minute.
+
+<P>
+<TT>lc-rs-limits</TT> tool displays current state of limits for your Rackspace account:
+
+<P>
+<PRE>
+$ lc-rs-limits
+Rates:
+    
+    verb             URI value  remaining     unit resetTime
+     PUT               *   10         10   MINUTE 2011-01-06 16:12:04
+     GET *changes-since*    3          3   MINUTE 2011-01-06 16:12:04
+    POST               *   10         10   MINUTE 2011-01-06 16:12:04
+    POST       /servers*  500        500      DAY 2011-01-06 16:12:04
+  DELETE               *  600        600   MINUTE 2011-01-06 16:12:04
+
+Absolute limits:
+
+maxPrivateIPs: 10
+maxTotalRAMSize: 921600
+maxIPGroupMembers: 25
+maxIPGroups: 25
+</PRE>
+
+<P>
+Please refer to Rackspace documentation for better information of the
+limits information presented by <TT>lc-rs-limits</TT>.
+
+<P>
+<BR><HR>
+<ADDRESS>
+Roman Bogorodskiy
+2011-02-22
+</ADDRESS>
+</BODY>
+</HTML>

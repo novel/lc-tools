@@ -1,0 +1,158 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>0.2.2 Configuring</TITLE>
+<META NAME="description" CONTENT="0.2.2 Configuring">
+<META NAME="keywords" CONTENT="tutorial">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="tutorial.css">
+
+<LINK REL="previous" HREF="node4.html">
+<LINK REL="up" HREF="node3.html">
+<LINK REL="next" HREF="node9.html">
+</HEAD>
+
+<BODY >
+<!--Navigation Panel-->
+<A NAME="tex2html140"
+  HREF="node9.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html136"
+  HREF="node3.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html132"
+  HREF="node7.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html138"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A>  
+<BR>
+<B> Next:</B> <A NAME="tex2html141"
+  HREF="node9.html">0.3 Basic Usage</A>
+<B> Up:</B> <A NAME="tex2html137"
+  HREF="node3.html">0.2 Getting Started</A>
+<B> Previous:</B> <A NAME="tex2html133"
+  HREF="node7.html">0.2.1.3 Installing from source</A>
+ &nbsp; <B>  <A NAME="tex2html139"
+  HREF="node1.html">Contents</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION00032000000000000000"></A> <A NAME="conf"></A>
+<BR>
+0.2.2 Configuring
+</H2>
+      All configuration data is stored in text file <TT>&nbsp;/.lcrc</TT>. It doesn't exist
+      by default so you have to create it:
+
+<P>
+<PRE>
+      touch ~/.lcrc
+      chmod 600 ~/.lcrc
+</PRE>
+
+<P>
+We need <TT>chmod</TT> to be sure others can't access you secret keys. If file mode
+      will be too permissive, <TT>lc-tools</TT> will not run.
+
+<P>
+Structure of the file is following:
+
+<P>
+<PRE>
+      [default]
+      driver = foogrid
+      access_id = your_key_id
+      secret_key = your_password
+
+      [barcloud]
+      driver = barcloud
+      access_id = somekey
+      secret_key = some_key
+</PRE>
+
+<P>
+You probably noted that config file is separated by sections (<B>default</B>,
+      <B>barcloud</B> in the example above). Each section corresponds to a signle
+      cloud account, it's possible to switch them and <B>default</B> section is
+      used by default and should always be present.
+
+<P>
+All fields are necessary and cannot be omitted.
+
+<P>
+<DL>
+<DT><STRONG>driver</STRONG></DT>
+<DD>
+<BR>
+name of the specific cloud provider for the account. To get a listof all
+          available drivers please execute
+
+<P>
+<PRE>
+            lc-drivers-list|cut -d "." -f3|sort|uniq
+</PRE>
+
+<P>
+</DD>
+<DT><STRONG>access_id</STRONG></DT>
+<DD>
+<BR>
+access_id for the account. It could be either login or some generated key
+        
+</DD>
+<DT><STRONG>secret_key</STRONG></DT>
+<DD>
+<BR>
+secretkey for the accout, in other words it's a password for given access_id
+      
+</DD>
+</DL>
+
+<P>
+Please refer to your cloud prover for detailed documentation on getting account's
+      credentials.
+
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html140"
+  HREF="node9.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html136"
+  HREF="node3.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html132"
+  HREF="node7.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html138"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A>  
+<BR>
+<B> Next:</B> <A NAME="tex2html141"
+  HREF="node9.html">0.3 Basic Usage</A>
+<B> Up:</B> <A NAME="tex2html137"
+  HREF="node3.html">0.2 Getting Started</A>
+<B> Previous:</B> <A NAME="tex2html133"
+  HREF="node7.html">0.2.1.3 Installing from source</A>
+ &nbsp; <B>  <A NAME="tex2html139"
+  HREF="node1.html">Contents</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+Roman Bogorodskiy
+2011-02-22
+</ADDRESS>
+</BODY>
+</HTML>
