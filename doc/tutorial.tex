@@ -296,6 +296,38 @@ that you should configure {\tt lc-tools} to install GoGrid specific scripts pass
 to \texttt{setup.py install}. Please refer to \nameref{instsrc} for more details on that.
 
 \subsection{GoGrid}
+\subsubsection{Controlling IP Addresses}
+
+\textit{Availability: gg}
+
+By default, the first available IP address is used for a new node. However, you
+can explicitly specify IP address you want to use for a node using extra
+argument {\tt ip} for \texttt{lc-node-add}:
+
+\begin{verbatim}
+$ lc-node-add -s 1GB -i 123 -n foo ip=1.2.3.4
+\end{verbatim}
+
+You can find out what IP addresses are available for you account using 
+\texttt{lc-gg-ip-list} tool:
+
+\begin{verbatim}
+$ lc-gg-ip-list
+ip 10.0.175.66 (id=12345, public=False, state=Unassigned, subnet=10.0.175.0/255.255.255.0)
+ip 10.0.175.67 (id=12346, public=False, state=Unassigned, subnet=10.0.175.0/255.255.255.0)
+...
+$
+\end{verbatim}
+
+There are several filtering options available in \texttt{lc-gg-ip-list}:
+
+\begin{description}
+  \item[-a] use \texttt{-a true} to list only assigned addresses and
+       \texttt{-a false} to list unassigned ones
+  \item[-u] use \texttt{-u true} to show only public addresses and
+       \texttt{-a false} to list private addresses
+\end{description}
+
 \subsubsection{Creating a Sandbox Server}
 
 \textit{Availability: default}
