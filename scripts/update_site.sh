@@ -5,7 +5,7 @@
 
 ## general settings
 BRANCH="gh-pages"
-PROJECT_DIR="`pwd`/.."
+PROJECT_DIR="`realpath ..`"
 LCTOOLS_VERSION="`cat ${PROJECT_DIR}/VERSION`"
 
 ## path settings
