@@ -1,7 +1,7 @@
 import getopt
 import sys
 
-from libcloud.types import NodeState
+from libcloud.compute.types import NodeState
 
 from lc import get_lc
 from printer import Printer
