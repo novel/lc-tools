@@ -11,9 +11,13 @@ readable_status = {NodeState.RUNNING: "Running",
 
 class Printer(object):
     _formats = {"nodeimage": "image %(name)s (id = %(id)s)",
-            "nodesize": "size %(name)s (id=%(id)s, ram=%(ram)s, disk=%(disk)s bandwidth=%(bandwidth)s)",
-            "rackspacesharedipgroup": "IP group %(name)s (id = %(id)s, servers = %(servers)s)",
-            "gogridipaddress": "ip %(ip)s (id=%(id)s, public=%(public)s, state=%(state)s, subnet=%(subnet)s)",
+            "nodesize": ("size %(name)s (id=%(id)s, ram=%(ram)s,"
+                " disk=%(disk)s bandwidth=%(bandwidth)s)"),
+            "rackspacesharedipgroup": ("IP group %(name)s"
+                " (id = %(id)s, servers = %(servers)s)"),
+            "gogridipaddress": ("ip %(ip)s "
+                "(id=%(id)s, public=%(public)s, state=%(state)s, subnet=%(subnet)s)"),
+            "lb": "%(id)s %(name)s"
             }
 
     @classmethod
