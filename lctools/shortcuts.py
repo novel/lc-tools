@@ -7,7 +7,8 @@ from lc import get_lc
 from printer import Printer
 
 
-def lister_main(what, extension=False, supports_location=False, **kwargs):
+def lister_main(what, resource=None,
+        extension=False, supports_location=False, **kwargs):
     """Shortcut for main() routine for lister
     tools, e.g. lc-SOMETHING-list
 
@@ -44,7 +45,7 @@ def lister_main(what, extension=False, supports_location=False, **kwargs):
             location = a
 
     try:
-        conn = get_lc(profile)
+        conn = get_lc(profile, resource=resource)
 
         list_kwargs = kwargs
 
