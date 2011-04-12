@@ -1,0 +1,38 @@
+#!/usr/bin/env python
+
+import getopt
+import sys
+
+from libcloud.resource.lb.base import LB
+
+from lctools.lc import get_lc
+
+
+def usage(prog):
+    sys.stdout.write(("%s [-p <profile> ] -i <id>\n\n") % prog)
+
+if __name__ == "__main__":
+    profile = "default"
+    lb_id = None
+
+    try:
+        opts, args = getopt.getopt(sys.argv[1:], "p:i:")
+    except getopt.GetoptError, err:
+        sys.stderr.write("%s\n" % str(err))
+        sys.exit(1)
+
+    for o, a in opts:
+        if o == "-p":
+            profile = a
+        elif o == "-i":
+            lb_id = a
+
+    conn = get_lc(profile, resource='lb')
+
+    if lb_id is None:
+        usage(sys.argv[0])
+        sys.exit(1)
+
+    balancer = LB(lb_id, None, None, None)
+
+    conn.destroy_balancer(balancer)
