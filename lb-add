@@ -28,7 +28,7 @@ if __name__ == "__main__":
         if o == "-p":
             profile = a
         elif o == "-P":
-            port = port
+            port = a
         elif o == "-n":
             name = a
 
