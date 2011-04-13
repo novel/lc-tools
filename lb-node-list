@@ -36,6 +36,7 @@ if __name__ == "__main__":
         usage(sys.argv[0])
         sys.exit(1)
 
-    balancer = LB(lb_id, None, None, None)
+    balancer = LB(lb_id, None, None, None, None, None)
     nodes = conn.balancer_list_nodes(balancer)
-    print nodes
+    for node in nodes:
+        print node
