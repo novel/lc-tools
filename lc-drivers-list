@@ -2,7 +2,7 @@
 
 import sys
 
-from libcloud.providers import DRIVERS
+from libcloud.compute.providers import DRIVERS
 
 if __name__ == "__main__":
     for k, v in DRIVERS.iteritems():
