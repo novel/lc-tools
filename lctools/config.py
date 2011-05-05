@@ -10,7 +10,8 @@ class MyConfig(ConfigParser.ConfigParser):
 
     def __init__(self, profile):
         self.profile = profile
-        ConfigParser.ConfigParser.__init__(self, {"verify_ssl_certs": "false"})
+        ConfigParser.ConfigParser.__init__(self,
+                {"verify_ssl_certs": "false", "extra": ""})
 
     def get(self, option):
         return ConfigParser.ConfigParser.get(self, self.profile, option)
