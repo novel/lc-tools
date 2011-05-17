@@ -3,7 +3,7 @@
 import getopt
 import sys
 
-from libcloud.resource.lb.base import LB
+from libcloud.loadbalancer.base import LoadBalancer
 
 from lctools.lc import get_lc
 
@@ -27,12 +27,12 @@ if __name__ == "__main__":
         elif o == "-i":
             lb_id = a
 
-    conn = get_lc(profile, resource='lb')
+    conn = get_lc(profile, resource='loadbalancer')
 
     if lb_id is None:
         usage(sys.argv[0])
         sys.exit(1)
 
-    balancer = LB(lb_id, None, None, None)
+    balancer = LoadBalancer(lb_id, None, None, None, None, None)
 
     conn.destroy_balancer(balancer)
