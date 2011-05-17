@@ -17,7 +17,7 @@ class Printer(object):
                 " (id = %(id)s, servers = %(servers)s)"),
             "gogridipaddress": ("ip %(ip)s "
                 "(id=%(id)s, public=%(public)s, state=%(state)s, subnet=%(subnet)s)"),
-            "lb": "%(id)s %(name)s %(ip)s:%(port)s"
+            "loadbalancer": "%(id)s %(name)s %(ip)s:%(port)s"
             }
 
     @classmethod
