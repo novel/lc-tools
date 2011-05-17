@@ -10,7 +10,7 @@ def get_lc(profile, resource=None):
         from libcloud.compute.types import Provider
         from libcloud.compute.providers import get_driver
     else:
-        pkg_name = 'libcloud.resource.%s' % resource
+        pkg_name = 'libcloud.%s' % resource
         Provider = __import__(pkg_name + ".types",
                 globals(), locals(), ['Provider'], -1).Provider
         get_driver =  __import__(pkg_name + ".providers",
