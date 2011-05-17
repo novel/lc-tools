@@ -3,4 +3,4 @@
 from lctools.shortcuts import lister_main
 
 if __name__ == "__main__":
-    lister_main('balancers', resource='lb')
+    lister_main('balancers', resource='loadbalancer')
