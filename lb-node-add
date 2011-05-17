@@ -3,7 +3,7 @@
 import getopt
 import sys
 
-from libcloud.resource.lb.base import LB
+from libcloud.loadbalancer.base import LoadBalancer, Member
 
 from lctools.lc import get_lc
 
@@ -27,16 +27,16 @@ if __name__ == "__main__":
         elif o == "-i":
             lb_id = a
 
-    conn = get_lc(profile, resource='lb')
+    conn = get_lc(profile, resource='loadbalancer')
 
     if lb_id is None and len(args) != 1:
         usage(sys.argv[0])
         sys.exit(1)
 
-    balancer = LB(lb_id, None, None, None)
+    balancer = LoadBalancer(lb_id, None, None, None, None, None)
 
     node_addr, node_port = args[0].split(":")
 
-    sys.exit(int(not conn.balancer_attach_node(balancer,
-        ip=node_addr, port=node_port)
+    sys.exit(int(not conn.balancer_attach_member(balancer,
+        Member(None, ip=node_addr, port=node_port))
         ))
