@@ -1,7 +1,7 @@
 #!/bin/sh
 
 MAN_PREFIX="${PREFIX}/share/man"
-RONN=${RONN:-/var/lib/gems/1.8/bin/ronn}
+RONN=${RONN:-ronn}
 
 ${RONN} --version > /dev/null 2>&1
 
