@@ -29,7 +29,13 @@ def get_lc(profile, resource=None):
         if not isinstance(extra_kwargs, dict):
             raise Exception('Extra arguments should be a Python dict')
 
-    driver = get_driver(getattr(Provider, conf.get('driver').upper()))
+    # a hack because libcloud driver names for Rackspace doesn't match
+    # for loadbalancers and compute
+    driver_name = conf.get('driver').upper()
+    if 'loadbalancer' == resource and 'RACKSPACE' == driver_name:
+        driver_name += "_US"
+
+    driver = get_driver(getattr(Provider, driver_name))
     conn = driver(conf.get('access_id'), conf.get('secret_key'), **extra_kwargs)
 
     return conn
