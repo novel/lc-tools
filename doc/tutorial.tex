@@ -8,6 +8,7 @@
 \date{\today}
 \begin{document}
    \maketitle
+   \setcounter{tocdepth}{4}
    \tableofcontents
    \section{Introduction}
    An {\tt lc-tools} is a set of command line tools to manage various Cloud (aka IaaS)
@@ -128,6 +129,23 @@
       credentials.
 
       \section{Basic Usage}
+        \subsection{General Info}
+	Lc-tools package consists of several tools each of them does its own thing:
+	listing images, creating nodes, etc. An easy way to learn what tools exist
+	type \texttt{lc-} or \texttt{lb-} in your shell's prompt and press
+        Tab key to auto complete.
+
+	Every tools allows to switch configuration profile (please refer
+	to \nameref{conf} if you don't know what it is). This is done using
+	\texttt{-p} switch like this:
+
+	\begin{verbatim}
+	lc-node-list -p myacc2
+	\end{verbatim}
+
+	Where \texttt{myacc2} is a name of profile you want to use. Again, this
+	feature works for every tool, not only \texttt{lc-node-list}.
+
          \subsection{Compute}
 		 \subsubsection{Glossary}
 		    Various cloud providers use different terms like images, flavours, nodes,
@@ -143,22 +161,6 @@
 		       Size of the \textit{node}, i.e. hardware features of \textit{node}.
 		       It could imply RAM, disk space and so on.
 		    \end{description}
-		 \subsubsection{General Info}
-		 Lc-tools package consists of several tools each of them does its own thing:
-		 listing images, creating nodes, etc. An easy way to learn what tools exist
-		 type \texttt{lc-} in your shell's prompt and press Tab key to autocomplete.
-
-		 Every tools allows to switch configuration profile (please refer
-		 to \nameref{conf} if you don't know what it is). This is done using
-		 \texttt{-p} switch like this:
-
-		    \begin{verbatim}
-		    lc-node-list -p myacc2
-		    \end{verbatim}
-
-		 Where \texttt{myacc2} is a name of profile you want to use. Again, this
-		 feature works for every tool, not only \texttt{lc-node-list}.
-
 		 \subsubsection{Listing Images}
 		    You can list available images using \texttt{lc-image-list} tool. Here
 		    is a sample of its output:
@@ -192,7 +194,7 @@
 	     size 2GB (id=2GB, ram=2048, disk=120 bandwidth=None)
 	     size 8GB (id=8GB, ram=8192, disk=480 bandwidth=None)
 	     size 1GB (id=1GB, ram=1024, disk=60 bandwidth=None)
-	       $
+	     $
 	       \end{verbatim}
 
 	       Please note that ids are not always numeric as could be seen by this example.
@@ -279,6 +281,79 @@
 		\end{verbatim}
 
 	      This will destroy nodes with ids starting from 100 and ending with 119.
+
+          \subsection{Load Balancers}
+                \subsubsection{Load Balancer Creation}
+                To create a new load balancer \texttt{lb-add} tool should be used. Here's an example:
+
+                 \begin{verbatim}
+		$ lb-add -n hellobalancer -P 80 192.168.0.1:80 192.168.0.2:8080
+		$
+                 \end{verbatim}
+
+                 We just created a balancer with name \texttt{hellobalancer} listening on
+                 port \texttt{80} and balancing load across two nodes: \texttt{192.168.0.1:80}
+                 and \texttt{192.168.0.2:8080}.
+
+                 \subsubsection{Listing Load Balancers}
+                 List of currently active Load Balancers could be obtained using \texttt{lb-list}:
+
+                 \begin{verbatim}
+		$ lb-list
+		12345 testlb979ec2c6 10.0.5.52:80
+		12346 testlba6f9c38b 10.0.53.71:80
+		12347 hellobalancer 10.0.5.128:80
+		$
+                 \end{verbatim}
+
+                 Format of the output is following:
+
+                 \begin{center}
+                   \begin{tabular}{ | c | c | c | }
+                     \hline
+                       balancer\_id & name & endpoint\_ip \\
+                     \hline
+                   \end{tabular}
+                 \end{center}
+
+                 \subsubsection{Operations on Members}
+                 You can view list of Load Balancer Member nodes using \texttt{lb-member-list} tool like that:
+
+                 \begin{verbatim}
+		$ lb-member-list -i 12347
+		<Member: id=33385, address=192.168.0.1:80>
+		<Member: id=33388, address=192.168.0.2:8080>
+		$
+                 \end{verbatim}
+
+                 You just specify id of the Balancer you're working with (in our case it's \texttt{12347}) and get
+                 a list of members attached to it.
+
+                 To add a new node to the Load Balancer you need to know its IP and port and pass it to \texttt{lb-member-add}
+                 tool:
+
+                 \begin{verbatim}
+		$ lb-member-add -i 12347 192.168.0.3:8080
+		$
+                 \end{verbatim}
+
+                 And, finally, to remove a member from Load Balancer, use \texttt{lb-member-remove}:
+
+                 \begin{verbatim}
+		$ lb-member-remove -i 12347 33388
+                 \end{verbatim}
+
+                 In this case we have to specify id on the Load Balancer and id of the member we're removing (id of
+                 the member could be obtained using \texttt{lb-member-list}.
+
+                 \subsubsection{Destroying Load Balancer}
+                 Load Balancer can be removed using \texttt{lb-destroy} command like that:
+
+                 \begin{verbatim}
+		$ lb-destroy -i 12347
+                 \end{verbatim}
+
+                 You just need to pass id of the Balancer you want to destroy.
 
 \section{Provider Specific} \label{provspec}
 
