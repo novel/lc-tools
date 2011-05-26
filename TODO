@@ -1,0 +1,5 @@
+ - Document formatting options (i.e. placeholders for "-f")
+ - Document debugging
+ - Add support for storing custom format in account's config
+ - Either drop man pages completely or make then up to date and
+   and man pages for lb-* stuff

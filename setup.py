@@ -28,7 +28,14 @@ scripts_to_install = ["lc-drivers-list",
             "lc-node-add",
             "lc-node-do",
             "lc-node-list",
-            "lc-sizes-list"]
+            "lc-sizes-list",
+            "lb-add",
+            "lb-destroy",
+            "lb-list",
+            "lb-member-add",
+            "lb-member-list",
+            "lb-member-remove",
+            ]
 
 class lc_install(install):
     user_options = install.user_options
@@ -46,7 +53,7 @@ class lc_install(install):
 
         for prov_script_dir in self.providertools.split():
             try:
-                scripts_to_install += [os.path.join("./provider_specific", 
+                scripts_to_install += [os.path.join("./provider_specific",
                     prov_script_dir, path) for path in
                     os.listdir(os.path.join(PROVIDER_TOOLS_DIR, prov_script_dir))]
             except OSError, err:
