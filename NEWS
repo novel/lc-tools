@@ -1,3 +1,15 @@
+0.5.0.0
+
+- Implemented lb-* scripts to work with load balancers
+- Fix imports for libcloud version 0.5.x
+- Switch to new version numbering: new scheme is:
+
+   $libcloud_version.$lctools_version
+
+  Where libcloud_version is the version of libcloud
+  which was used for lctools's current version development
+  and testing. And lctools_version is a numeric lctools version.
+
 0.1.5
 
 - Added tool to list GoGrid IP addresses: lc-gg-ip-list:
