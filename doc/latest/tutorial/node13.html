@@ -1,0 +1,88 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2008 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>0.3.2.2 Listing Images</TITLE>
+<META NAME="description" CONTENT="0.3.2.2 Listing Images">
+<META NAME="keywords" CONTENT="tutorial">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2008">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="tutorial.css">
+
+<LINK REL="next" HREF="node14.html">
+<LINK REL="previous" HREF="node12.html">
+<LINK REL="up" HREF="node11.html">
+<LINK REL="next" HREF="node14.html">
+</HEAD>
+
+<BODY >
+<!--Navigation Panel-->
+<A NAME="tex2html223"
+  HREF="node14.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html219"
+  HREF="node11.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html213"
+  HREF="node12.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html221"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A>  
+<BR>
+<B> Next:</B> <A NAME="tex2html224"
+  HREF="node14.html">0.3.2.3 Listing Sizes</A>
+<B> Up:</B> <A NAME="tex2html220"
+  HREF="node11.html">0.3.2 Compute</A>
+<B> Previous:</B> <A NAME="tex2html214"
+  HREF="node12.html">0.3.2.1 Glossary</A>
+ &nbsp; <B>  <A NAME="tex2html222"
+  HREF="node1.html">Contents</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H3><A NAME="SECTION00042200000000000000">
+0.3.2.2 Listing Images</A>
+</H3>
+		    You can list available images using <TT>lc-image-list</TT> tool. Here
+		    is a sample of its output:
+
+<P>
+<PRE>
+		 $ lc-image-list|grep -i centos
+		 image CentOS 5.2 (32-bit) w/ RightScale (id = 62)
+		 image CentOS 5.2 (64-bit) w/ RightScale (id = 63)
+		 image CentOS 5.3 (32-bit) w/ None (id = 1531)
+		 image CentOS 5.3 (64-bit) w/ None (id = 1532)
+		 $
+</PRE>
+
+<P>
+The first line is a shell command we've issued. I've piped it to
+		 <TT>grep</TT> to output only images containing 'centos' it their names,
+		 otherwise the list would be too long. 
+
+<P>
+For every image you see its name and id, for example for 
+		<I>CentOS 5.3 (64-bit) w/ None</I> id will be <TT>1532</TT>. Please
+		remember it because you will need it if you're going to use this
+		image.
+
+<P>
+<BR><HR>
+<ADDRESS>
+Roman Bogorodskiy
+2011-05-30
+</ADDRESS>
+</BODY>
+</HTML>
