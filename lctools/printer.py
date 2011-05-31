@@ -51,6 +51,7 @@ class Printer(object):
         values['ip'] = values['public_ip'][0]
         values['rstatus'] = readable_status[int(values['state'])]
         values['password'] = values['extra'].get('password', 'n/a')
+        values['description'] = values['extra']['description']
 
         if format is not None:
             fmt = format + '\n'
