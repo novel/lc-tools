@@ -1,0 +1,41 @@
+---
+layout: default
+title: examples
+---
+
+<p>Quick examples of <tt>lc-tools</tt> usage.</p>
+
+<p>Searching 'centos' images through images available for account:</p>
+
+<pre><code>$ lc-image-list|grep -i centos
+image CentOS 5.2 (32-bit) w/ RightScale (id = 62)
+image CentOS 5.2 (64-bit) w/ RightScale (id = 63)
+image CentOS 5.3 (32-bit) w/ None (id = 1531)
+image CentOS 5.3 (64-bit) w/ None (id = 1532)</pre></code>
+
+<p>Listing avialable sizes:</p>
+
+<pre><code>$ lc-sizes-list
+size 512MB (id=512MB, ram=512, disk=30 bandwidth=None)
+size 4GB (id=4GB, ram=4096, disk=240 bandwidth=None)
+size 2GB (id=2GB, ram=2048, disk=120 bandwidth=None)
+size 8GB (id=8GB, ram=8192, disk=480 bandwidth=None)
+size 1GB (id=1GB, ram=1024, disk=60 bandwidth=None)</code></pre>
+
+<p>Creating a new node:</p>
+
+<pre><code>lc-node-add -i 62 -s 1GB -n mynewnode</code></pre>
+
+<p>It will create a centos node (id = <b>64</b>) of size 1GB (id = <b>'1GB'</b>) with name <b>'mynewnode'</b>.
+
+<p>Gettling list of nodes:</p>
+
+<pre><code>$ lc-node-list
+100xxx  mynode1     173.204.xx.yy  Running
+100xxx  mynode2    173.204.xx.zz  Running</code></pre>
+
+<p>Removing a node:</p>
+
+<pre><code>lc-node-do -i node_id destroy</code></pre>
+
+<p>Where <b>node_id</b> is id of the node to destroy.</p>
