@@ -1,60 +1,34 @@
-<html>
-  <head>
-    <title>lc-tools</title>
-  </head>
-  <body>
-    <div style="width: 67%; margin-left: 120px">
-    <h1>about</h1>
-    <p><tt>lc-tools</tt> is a set of command line tools for
-    managing clouds. It's based on <a 
-         href="http://libcloud.org">libcloud<a> and
-    therefore supports all the providers that
-    libcloud supports (EC2, Rackspace and GoGrid
-    among of them). Like libcloud, it's written in
-    Python.</p>
+---
+layout: default
+title: home
+---
 
-    <p>You might want to check posts in my blog with
-      <a href="http://empt1e.blogspot.com/search/label/lc-tools">lc-tools tag</a>
-    with information about new <tt>lc-tools</tt> and <tt>libcloud</tt> features.</p>
+<script type="text/javascript">
+$(document).ready(function(){
+	$.getJSON("http://empt1e.blogspot.com/feeds/posts/default/-/lc-tools/?orderby=published&alt=json-in-script&callback=?",
+		lctools.news);
+});
+</script>
 
-    <h1>downloads and installation</h1>
-    <p><tt>lc-tools</tt> can be installed using PyPI:</p>
+<h1>about</h1>
+<p><tt>lc-tools</tt> is a set of command line tools for
+managing clouds. It's based on <a 
+         href="http://libcloud.org">libcloud</a> and
+therefore supports all the providers that
+libcloud supports (EC2, Rackspace and GoGrid
+among of them). Like libcloud, it's written in
+Python.</p>
 
-    <pre>sudo easy_install lctools</pre>
+<p><tt>lc-tools</tt> allows you to control your servers on the cloud,
+i.e. create, update, list, destroy, manage server images, query
+account special data like limits, IP addresses and so on. As of version
+<tt>0.5.0.0</tt> it supports managing load balancers as well.</p>
 
-    <p>But it's recommended to use latest git version of
-    <tt>lc-tools</tt>:<p>
+<p>Check <a href="/examples.html">examples</a> and then
+<a href="/documentation.html">documentation</a> to get a better idea
+how <tt>lc-tools</tt> feels like.</p>
 
-    <pre>git://github.com/novel/lc-tools.git</pre>
+<h1>news</h1>
 
-    <p>It also needs svn version of <tt>libcloud</tt>,
-    please check its <a 
-href="http://incubator.apache.org/libcloud/devinfo.html">developers info</a> 
-    page to know how to get it.</p>
-
-    <h1>documentation</h1>
-    <p>There are manual pages and tutorial available
-    online:</p>
-
-    <ul>
-      <li>
-        <a href="http://novel.github.com/lc-tools/doc/latest/man/">Manual Pages</a>
-      </li>
-      <li>
-      Tutorial (<a href="http://novel.github.com/lc-tools/doc/latest/tutorial/">HTML</a>,
-      <a href="http://novel.github.com/lc-tools/doc/latest/tutorial/tutorial.pdf">PDF</a>)
-      </li>
-    </ul>
-
-    <h1>support</h1>
-    <p>Feel free to drop an email to <tt>novel@freebsd.org</tt> if you
-    have any feedback.</p>
-
-    <h1>links</h1>
-    <ul>
-      <li><a href="https://github.com/novel/lc-tools">lc-tools on github</a></li>
-      <li><a href="http://libcloud.org">libcloud homepage</a></li>
-    </ul>
-    </div>
-  </body>
-</html>
+<ul id="news_list">
+</ul>
