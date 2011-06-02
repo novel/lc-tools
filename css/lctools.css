@@ -67,3 +67,7 @@ pre {
 h1 {
    color: #BBBBBB;
 }
+
+.tt {
+   font-family: monospace;
+}
