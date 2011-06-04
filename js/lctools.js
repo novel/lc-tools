@@ -6,16 +6,12 @@ var lctools = {
 			var post = json.feed.entry[i];
 			var postTitle = post.title.$t;
 			var postContent = post.content.$t;
+			var postPublished = Date.parse(post.published.$t.replace(/\.\d{3}([\-\+])/, "$1"));
+			
+			var prettyPostPublished = $.easydate.format_date(postPublished);
 			var tags = '';
 			var postLink;
 			var j = 0;
-
-			// create command-separated link of tags
-			/*while (j < post.category.length - 1) {
-				tags += post.category[j].term + ", ";
-				j++;
-			}
-			tags += post.category[j].term;*/
 
 			// fetch post link
 			for (var k = 0; k < post.link.length; k++) {
@@ -25,7 +21,9 @@ var lctools = {
 				}
 			}
 
-			$("<li><a href='" + postLink + "'><h3>" + postTitle + "</h3></a><div>" + postContent + "</div></li>").appendTo("#news_list");
+			$("<li><a href='" + postLink + "'><h3>" + postTitle + " :: " + 
+					prettyPostPublished + "</h3></a><div>" + 
+					postContent + "</div></li>").appendTo("#news_list");
 		}
 	},
 
