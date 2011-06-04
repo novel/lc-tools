@@ -68,6 +68,11 @@ h1 {
    color: #BBBBBB;
 }
 
+#logo {
+   float: left;
+   margin: 0em 1em 0em 0em;
+}
+
 .tt {
    font-family: monospace;
 }
