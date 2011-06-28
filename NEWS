@@ -1,3 +1,8 @@
+current
+
+- Allow setting current profile not only via '-p'
+  option but via LC_PROFILE environment variable also
+
 0.5.0.0
 
 - Implemented lb-* scripts to work with load balancers

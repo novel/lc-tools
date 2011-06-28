@@ -1,9 +1,12 @@
+import os
+
 from libcloud.compute.types import Provider
 from libcloud.compute.providers import get_driver
 import libcloud.security
 
 from config import get_config
 
+PROFILE_ENV_VAR = "LC_PROFILE"
 
 def get_lc(profile, resource=None):
     if resource is None:
@@ -15,6 +18,9 @@ def get_lc(profile, resource=None):
                 globals(), locals(), ['Provider'], -1).Provider
         get_driver =  __import__(pkg_name + ".providers",
                 globals(), locals(), ['get_driver'], -1).get_driver
+
+    if "default" == profile and PROFILE_ENV_VAR in os.environ:
+        profile = os.environ[PROFILE_ENV_VAR]
 
     conf = get_config(profile)
 
