@@ -3,6 +3,9 @@ current
 - Allow setting current profile not only via '-p'
   option but via LC_PROFILE environment variable also
 
+- Make lc-node-do process all nodes that were specified in
+  '-i' instead of failing on the first non-existing one
+
 0.5.0.0
 
 - Implemented lb-* scripts to work with load balancers
