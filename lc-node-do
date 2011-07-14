@@ -43,12 +43,12 @@ if __name__ == "__main__":
     else:
         nodes_to_process = node_ids.split(",")
 
-    for node_id in nodes_to_process:        
+    for node_id in nodes_to_process:
         try:
             node = filter(lambda node: str(node.id) == str(node_id),
                     conn.list_nodes())[0]
         except IndexError:
-            sys.stderr.write("No node with id %s found." % node_id)
-            sys.exit(1)
+            sys.stderr.write("No node with id %s found, skipping\n" % node_id)
+            continue
 
         getattr(node, action)()
