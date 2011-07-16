@@ -75,4 +75,4 @@ if __name__ == "__main__":
     create_node_kwargs.update(process_extra_args(args))
 
     node = conn.create_node(**create_node_kwargs)
-    print node
+    Printer.do(node)
