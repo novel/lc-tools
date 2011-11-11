@@ -68,7 +68,7 @@ def save_image_main():
         sys.stdout.write("%s -i <node_id> -n <image_name> [-p <profile]\n\n" % progname)
 
     profile = 'default'
-    node_id = None
+    name = node_id = None
 
     try:
         opts, args = getopt.getopt(sys.argv[1:], "i:n:p:")
