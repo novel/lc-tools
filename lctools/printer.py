@@ -48,7 +48,7 @@ class Printer(object):
     def _print_gogridnode(self, thing, format=None):
         values = thing.__dict__.copy()
         # gogrid only has one public ip per server
-        values['ip'] = values['public_ip'][0]
+        values['ip'] = values['public_ips'][0]
         values['rstatus'] = readable_status[int(values['state'])]
         values['password'] = values['extra'].get('password', 'n/a')
         values['description'] = values['extra']['description']
@@ -62,7 +62,7 @@ class Printer(object):
     @classmethod
     def _print_node(self, thing, format=None):
         values = thing.__dict__.copy()
-        values['ip'] = "; ".join(values['public_ip'])
+        values['ip'] = "; ".join(values['public_ips'])
         values['rstatus'] = readable_status[int(values['state'])]
 
         if format is not None:
