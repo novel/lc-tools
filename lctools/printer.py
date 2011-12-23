@@ -1,6 +1,6 @@
 import sys
 
-from libcloud.types import NodeState
+from libcloud.compute.types import NodeState
 
 readable_status = {NodeState.RUNNING: "Running",
         NodeState.REBOOTING: "Rebooting",
