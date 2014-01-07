@@ -55,7 +55,7 @@ class Printer(object):
         values['ram'] = values['extra']['ram']
 
         if format is not None:
-            fmt = format + '\n'
+            fmt = format.decode('string-escape') + '\n'
         else:
             fmt = "%(id)s\t%(name)s\t%(ip)s\t%(rstatus)s\n"
         sys.stdout.write(fmt % values)
