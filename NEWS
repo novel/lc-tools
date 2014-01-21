@@ -1,4 +1,11 @@
-current
+0.7.1.1
+
+- Add possibility of GoGrid node RAM printing using
+  %(ram)s format string
+
+- Decode format string using 'string-escape'
+
+0.7.1.0
 
 - Allow setting current profile not only via '-p'
   option but via LC_PROFILE environment variable also
